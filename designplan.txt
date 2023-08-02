@@ -1,0 +1,25 @@
+Functions:
+
+Resources?:
+	Powerschool, calendar, finals calculator
+
+Timers:
+	Primary Timer
+	Date
+	Current Time
+
+Text Boxes:
+	Alignment
+	Saving function
+
+Settings Page:
+	Color
+	Date, time, military time, seconds
+	Primary support
+	Test tab
+	Save
+	Close
+	Lunch selector
+
+MetaData:
+	Updating site title
