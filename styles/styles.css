@@ -1,20 +1,15 @@
-#Time{
-    text-align: center;
-}
-h1{
-    text-align: center
+body{
+    font-family: "Open Sans";
+    font-size: 22px
 }
 
-#logo{
-    display: block;
-    margin-right: auto;
-    width: 10%;
-    padding-left: 50px;
-    padding-top: 30px;
+
+#Time{
+    text-align: center;
+    font-size: 30px;
+
 }
-#logo > img{
-    display: block;
-    margin-right: auto;
-    padding: 10px;
-    width: 300px;
+
+h1{
+    text-align: center
 }

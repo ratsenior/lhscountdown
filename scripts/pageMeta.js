@@ -20,29 +20,59 @@ function tweleveHour(h){
     if (h > 12) {h = h-12};
     return h
 }
-//end of date formating
 
-//user customization functions
+
+//background customization functions
 function backgroundColorChange(){
-    let bgColor = document.getElementById('backgroundColorInput').value;
-    document.body.style.backgroundColor = bgColor;
+    if (!localStorage.getItem("bgColor")){
+        inheritColorSelectionBg();
+    }
+    else {
+        document.body.style.backgroundColor = localStorage.getItem("bgColor");
+        document.getElementById("backgroundColorInput").setAttribute("value",localStorage.getItem("bgColor"));
+    }
+}
+function inheritColorSelectionBg(){
+    localStorage.setItem("bgColor", document.getElementById("backgroundColorInput").value);
+    document.body.style.backgroundColor = localStorage.getItem("bgColor");
 }
 
-//text color change to come
-//function textColorChange(){
-    //let h1Color = document.getElementById("textColorInput").value;
-    //document.body.style.h1 = h1Color;
-//}
 
+//text color customization functions
+function textColorChange(){
+    if (!localStorage.getItem("txtColor")){
+        inheritColorSelectionTxt();
+    }
+    else {
+        updateText();
+        document.getElementById("textColorInput").setAttribute("value",localStorage.getItem("txtColor"));
+    }
+
+}
+function inheritColorSelectionTxt(){
+    localStorage.setItem("txtColor", document.getElementById("textColorInput").value);
+    updateText();
+    
+}
+function updateText(){
+    const textElements = document.getElementsByClassName("content");
+    for (var i = 0; i < textElements.length; i++){
+        textElements[i].style.color = localStorage.getItem("txtColor");
+    }
+}
+
+//misc functions
 function faviconSelector(){
     let today = new Date();
     let date = String(today.getDate());
     const favicon = document.getElementById("favicon");
-    favicon.setAttribute("href","images/date_icons/"+date+".png");
+    favicon.setAttribute("href",`images/date_icons/${date}.png`);
 }
 
 //Starts all needed "start" functions
 function initalize(){
     startTime();
     faviconSelector();
+    backgroundColorChange();
+    textColorChange();
 }
