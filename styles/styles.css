@@ -1,15 +1,120 @@
+html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+header{
+    position: relative;
+    width: 80%;
+    outline: 1px solid black;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
 body{
+    margin: auto;
     font-family: "Open Sans";
-    font-size: 22px
+    font-size: 22px;
+    position: relative;
 }
 
 
-#Time{
-    text-align: center;
-    font-size: 30px;
 
+
+header > #countdown{
+    margin: 0;
+    outline: 1px solid blue;
+    position: relative;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    top: 40px;
+    max-width: 400px;
+    text-align: center;
+}
+header > #Time{
+    margin: 0;
+    outline: 1px solid green;
+    position: relative;
+    top: 23px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    max-width: 130px;
+    text-align: center;
+}
+
+button{
+    background: none;
+    border: none;
+}
+
+button:active{
+    transform: rotate(50deg);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+input:hover{
+    cursor: pointer;
 }
 
 h1{
-    text-align: center
+    text-align: center;
+    font-size: 60px
+}
+
+#settings{
+    max-width: 20%;
+    position: relative;
+    left: 50px;
+    top: 10px;
+    
+}
+
+#gear{
+    position: relative;
+    /*outline: 1px solid black;*/
+    left: 50%;
+    top: 30px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-size: 3px;
+
+}
+
+
+#backgroundColorInput,#textColorInput,.options{
+    position: relative;
+    left: 0px;
+    text-align: left;
+    outline: none;
+    border: none;
+    visibility: hidden;
+
+}
+
+label{
+    position: relative;
+}
+
+ul{
+    list-style-type: none;
+}
+
+li{
+    padding: 0;
+    border-spacing: 0;
+}
+
+#fontInput{
+    outline: 1px solid black;
+}
+
+#fontInput:hover{
+    cursor: text
 }

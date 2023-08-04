@@ -59,6 +59,11 @@ function updateText(){
     for (var i = 0; i < textElements.length; i++){
         textElements[i].style.color = localStorage.getItem("txtColor");
     }
+    const iconElements = document.getElementsByClassName("material-icons");
+    for (var i = 0; i < iconElements.length; i++){
+        iconElements[i].style.color = localStorage.getItem("txtColor");
+    }
+    document.getElementById("settings").style.outline = `1px solid ${localStorage.getItem("txtColor")}`;
 }
 
 //misc functions
@@ -69,10 +74,30 @@ function faviconSelector(){
     favicon.setAttribute("href",`images/date_icons/${date}.png`);
 }
 
+function settingsClick(){
+    const settingsList = document.getElementsByClassName("options");
+    for (let i = 0; i < settingsList.length; i++){
+    
+        if (settingsList[i].style.visibility === "hidden" || settingsList[i].style.visibility === ""){
+
+            settingsList[i].style.visibility = "visible";
+            document.getElementById("settings").style.outline = `1px solid ${localStorage.getItem("txtColor")}`;
+            
+        }
+        else{
+            (settingsList[i].style.visibility = "hidden")
+            if ((i+1) == (settingsList.length)){
+                document.getElementById("settings").style.outline = "none";
+            }
+    }
+
+    }
+}
 //Starts all needed "start" functions
 function initalize(){
     startTime();
     faviconSelector();
     backgroundColorChange();
     textColorChange();
+    document.getElementById("settings").style.outline = "none";
 }

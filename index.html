@@ -2,32 +2,55 @@
 <html lang="en">
   <head>
     <script type ="text/javascript" src="/scripts/pageMeta.js"></script>  
+    
+    <meta name="description" content="Countdown for LHS">
+    <meta name="keywords" content="LHS,Countdown">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>LHS Countdown</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
     <link rel="stylesheet" href="styles/styles.css">
+    
     <link id="favicon" rel="icon" type="image/png" href="image_name.png">
   </head>
- 
+
   
+  <header class="content">
+    <h1 class="content" id="countdown">Countdown</h1>
+    <h2 id="Time"></h2>
+  </header>
+
   <body onload="initalize()">
     <script type ="text/javascript" src="/scripts/pageMeta.js"></script>  
     
-    <!--Settings block-->
-    <div id="settings">
-    <label class="content"for="backgroundColorInput">Background Color Selector:</label>
-    <input type="color" id = "backgroundColorInput" value = "#000000" onchange="inheritColorSelectionBg()">
-    </div>
+    <!--settings-->
+    <aside id="settings">
+      <button id ="gear"style="font-size:50px"class="material-icons" onclick="settingsClick()">settings</i></button>
+      <ul class= "options">
+        <li><label class="content" class = "options" for="backgroundColorInput">Background Color:</label>
+        <input class="options" type="color" id = "backgroundColorInput" value = "#000000" onchange="inheritColorSelectionBg()"></li>
   
-    <label class="content" for="textColorInput">Text Color Selector:</label>
-    <input type="color" id = "textColorInput" value = "#FFFFFF" onchange="inheritColorSelectionTxt()">
+  
+        <li><label class="content" class = "options" for="textColorInput">Text Color:</label>
+        <input class="options" type="color" id = "textColorInput" value = "#FFFFFF" onchange="inheritColorSelectionTxt()"></li>
+
+        <li><label class = "content" class="options" for="lunchSelect">Lunch Period:</label>
+          <select name="Lunch" id="lunchSelect">
+          <option value="a">A</option>
+          <option value="b">B</option>
+          <option value="c">C</option>
+          </select>
+          </li>
+
     
-    <h1 class="content">Countdown</h1>
-    <div>
-      <h1 class="content" id="Time"></h1>
-    </div>
-  
+      </ul>
+    </aside>
+    
+    <!--end of settings-->
+
   
 </body>
 </html>
