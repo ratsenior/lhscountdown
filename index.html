@@ -38,7 +38,7 @@
         <input class="options" type="color" id = "textColorInput" value = "#FFFFFF" onchange="inheritColorSelectionTxt()"></li>
 
         <li><label class = "content" class="options" for="lunchSelect">Lunch Period:</label>
-          <select name="Lunch" id="lunchSelect">
+          <select name="Lunch" id="lunchSelect" onchange="saveLunch()">
           <option value="a">A</option>
           <option value="b">B</option>
           <option value="c">C</option>
@@ -51,6 +51,15 @@
     
     <!--end of settings-->
 
-  
+    <section id="notepadsSection">
+      <textarea id="notepad0" rows="8" cols="1">1.</textarea>
+      <textarea id="notepad1" rows="8" cols="1">2.</textarea>
+      <textarea id="notepad2" rows="8" cols="1">3.</textarea>
+      <textarea id="notepad3" rows="8" cols="1">4.</textarea>
+      <textarea id="notepad4" rows="8" cols="1">5.</textarea>
+      <textarea id="notepad5" rows="8" cols="1">6.</textarea>
+      <textarea id="notepad6" rows="8" cols="1">7.</textarea>
+      <textarea id="notepad7" rows="8" cols="1">Extra.</textarea>
+    </section>
 </body>
 </html>

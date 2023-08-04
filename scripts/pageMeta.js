@@ -30,11 +30,13 @@ function backgroundColorChange(){
     else {
         document.body.style.backgroundColor = localStorage.getItem("bgColor");
         document.getElementById("backgroundColorInput").setAttribute("value",localStorage.getItem("bgColor"));
+        updateNotepads();
     }
 }
 function inheritColorSelectionBg(){
     localStorage.setItem("bgColor", document.getElementById("backgroundColorInput").value);
     document.body.style.backgroundColor = localStorage.getItem("bgColor");
+    updateNotepads();
 }
 
 
@@ -46,12 +48,14 @@ function textColorChange(){
     else {
         updateText();
         document.getElementById("textColorInput").setAttribute("value",localStorage.getItem("txtColor"));
+        updateNotepads();
     }
 
 }
 function inheritColorSelectionTxt(){
     localStorage.setItem("txtColor", document.getElementById("textColorInput").value);
     updateText();
+    updateNotepads();
     
 }
 function updateText(){
@@ -93,6 +97,20 @@ function settingsClick(){
 
     }
 }
+
+function saveLunch(){
+    localStorage.setItem("lunchPeriod",document.getElementById("lunchSelect").value)
+}
+
+function updateNotepads(){
+    let notepads = document.getElementsByTagName("textarea");
+    for (let i = 0; i < notepads.length; i++){
+        notepads[i].style.background = localStorage.getItem("bgColor");
+        notepads[i].style.outline = `1px solid ${localStorage.getItem("txtColor")}`;
+        notepads[i].style.color = localStorage.getItem("txtColor");
+    }
+}
+
 //Starts all needed "start" functions
 function initalize(){
     startTime();

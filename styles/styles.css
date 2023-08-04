@@ -1,16 +1,17 @@
 html, body{
     max-width: 100%;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 header{
     position: relative;
     width: 80%;
-    outline: 1px solid black;
     justify-content: center;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
+    outline: 1px solid black
 }
 
 body{
@@ -25,7 +26,6 @@ body{
 
 header > #countdown{
     margin: 0;
-    outline: 1px solid blue;
     position: relative;
     left: 50%;
     margin-right: -50%;
@@ -33,10 +33,10 @@ header > #countdown{
     top: 40px;
     max-width: 400px;
     text-align: center;
+    outline: 1px solid green
 }
 header > #Time{
     margin: 0;
-    outline: 1px solid green;
     position: relative;
     top: 23px;
     left: 50%;
@@ -44,6 +44,7 @@ header > #Time{
     transform: translate(-50%, -50%);
     max-width: 130px;
     text-align: center;
+    outline: 1px solid blue
 }
 
 button{
@@ -117,4 +118,28 @@ li{
 
 #fontInput:hover{
     cursor: text
+}
+
+#notepadsSection{
+    position: relative;
+ 
+    max-width: 67.05%;
+    height: 710px;
+    top: -180px;
+    left: 437px;
+    overflow: hidden;
+    justify-items: start;
+}
+
+textarea{
+    position: relative ;
+    max-width: 40%;
+    box-sizing: border-box;
+    width: 70%;
+    font-size: 12pt;
+}
+.notepad6{
+    position: relative;
+
+    
 }

@@ -6,7 +6,6 @@ Resources?:
 Timers:
 	Primary Timer
 	Date
-	Current Time
 
 Text Boxes:
 	Alignment
