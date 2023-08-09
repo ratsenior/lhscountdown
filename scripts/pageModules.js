@@ -276,6 +276,7 @@ function countTo(timeObject) {
 //Starts all needed "start" functions
 function initalize(){
     sessionStorage.setItem("period",0);
+    saveLunch();
     startTime();
     faviconSelector();
     backgroundColorChange();
