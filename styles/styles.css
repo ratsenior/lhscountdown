@@ -137,6 +137,7 @@ textarea{
     box-sizing: border-box;
     width: 70%;
     font-size: 12pt;
+    resize: none;
 }
 .notepad6{
     position: relative;
