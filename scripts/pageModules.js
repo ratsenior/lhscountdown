@@ -56,15 +56,18 @@ function inheritColorSelectionTxt(){
     updateNotepads(); 
 }
 function updateText(){
+    color = localStorage.getItem("txtColor")
     const textElements = document.getElementsByClassName("content");
     for (var i = 0; i < textElements.length; i++){
-        textElements[i].style.color = localStorage.getItem("txtColor");
+        textElements[i].style.color = color;
     }
     const iconElements = document.getElementsByClassName("material-icons");
     for (var i = 0; i < iconElements.length; i++){
-        iconElements[i].style.color = localStorage.getItem("txtColor");
+        iconElements[i].style.color = color;
     }
-    document.getElementById("settings").style.outline = `1px solid ${localStorage.getItem("txtColor")}`;
+    document.getElementById("countdown").style.outline = `1px solid ${color}`;
+    document.getElementById("settings").style.outline = `1px solid ${color}`;
+    document.getElementById("Time").style.textDecoration = `underline solid ${color}`
 }
 
 
