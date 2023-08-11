@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+  <head style="font-family: Open Sans">
     <script type ="text/javascript" src="/scripts/pageModules.js"></script>  
     
     <meta name="description" content="Countdown for LHS">
@@ -19,47 +19,40 @@
   </head>
 
   
-  <header class="content">
-    <h1 id="countdown"></h1>
+  <header class="content" style="font-family: Open Sans">
+    <h1 id="countdown" style="font-size: 60px"></h1>
     <script type = "text/javascript" src="/scripts/pageModules.js"></script>
-    <h2 id="Time"></h2>
+    <h2 id="time"></h2>
   </header>
 
-  <body onload="initalize()">
-    <script type ="text/javascript" src="/scripts/pageModules.js"></script>  
+  <body onload="initalize()", style="font-family: Open Sans">
+    <script type ="text/javascript" src="/scripts/pageModules.js"></script>
+      <aside id="settings">
+        <button id ="gear"style="font-size:50px"class="material-icons" onclick="settingsClick()">settings</i></button>
+        <ul class= "options">
+          <li><label class="content" class = "options" for="backgroundColorInput">Background Color:</label>
+          <input class="options" type="color" id = "backgroundColorInput" value = "#000000" onchange="inheritColorSelectionBg()"></li>
     
-    <!--settings-->
-    <aside id="settings">
-      <button id ="gear"style="font-size:50px"class="material-icons" onclick="settingsClick()">settings</i></button>
-      <ul class= "options">
-        <li><label class="content" class = "options" for="backgroundColorInput">Background Color:</label>
-        <input class="options" type="color" id = "backgroundColorInput" value = "#000000" onchange="inheritColorSelectionBg()"></li>
-  
-  
-        <li><label class="content" class = "options" for="textColorInput">Text Color:</label>
-        <input class="options" type="color" id = "textColorInput" value = "#FFFFFF" onchange="inheritColorSelectionTxt()"></li>
-
-        <li><label class = "content" class="options" for="lunchSelect">Lunch Period:</label>
-          <select name="Lunch" id="lunchSelect" value = "a" onchange="saveLunch()">
-          <option value="a">A</option>
-          <option value="c">C</option>
-          </select>   
-      </ul>
-    </aside>
     
-    <!--end of settings-->
-
-
-    <!--notepads-->
-    <section id="notepadsSection">
-      <textarea id="notepad0" rows="8" cols="1" onchange="saveNotepad(0)">1.</textarea>
-      <textarea id="notepad1" rows="8" cols="1" onchange="saveNotepad(1)">2.</textarea>
-      <textarea id="notepad2" rows="8" cols="1" onchange="saveNotepad(2)">3.</textarea>
-      <textarea id="notepad3" rows="8" cols="1" onchange="saveNotepad(3)">4.</textarea>
-      <textarea id="notepad4" rows="8" cols="1" onchange="saveNotepad(4)">5.</textarea>
-      <textarea id="notepad5" rows="8" cols="1" onchange="saveNotepad(5)">6.</textarea>
-      <textarea id="notepad6" rows="8" cols="1" onchange="saveNotepad(6)">7.</textarea>
-      <textarea id="notepad7" rows="8" cols="1" onchange="saveNotepad(7)">Extra.</textarea>
+          <li><label class="content" class = "options" for="textColorInput">Text Color:</label>
+          <input class="options" type="color" id = "textColorInput" value = "#FFFFFF" onchange="inheritColorSelectionTxt()"></li>
+  
+          <li><label class = "content" class="options" for="lunchSelect">Lunch Period:</label>
+            <select name="Lunch" id="lunchSelect" value = "a" onchange="saveLunch()">
+            <option value="a">A</option>
+            <option value="c">C</option>
+            </select>   
+        </ul>
+      </aside>
+      <section id="notepadsSection">
+      <textarea id="notepad0" rows="6" cols="50" onchange="saveNotepad(0)">1.</textarea>
+      <textarea id="notepad1" rows="6" cols="50" onchange="saveNotepad(1)">2.</textarea>
+      <textarea id="notepad2" rows="6" cols="50" onchange="saveNotepad(2)">3.</textarea>
+      <textarea id="notepad3" rows="6" cols="50" onchange="saveNotepad(3)">4.</textarea>
+      <textarea id="notepad4" rows="6" cols="50" onchange="saveNotepad(4)">5.</textarea>
+      <textarea id="notepad5" rows="6" cols="50" onchange="saveNotepad(5)">6.</textarea>
+      <textarea id="notepad6" rows="6" cols="50" onchange="saveNotepad(6)">7.</textarea>
+      <textarea id="notepad7" rows="6" cols="50" onchange="saveNotepad(7)">Extra.</textarea>
     </section>
     <!--end of notepads-->
 </body>
