@@ -8,7 +8,7 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
 
-    document.getElementById('Time').innerHTML = h + ":" + m + ":" + s;
+    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
     setTimeout(startTime, 1000);
 }
 function checkTime(i){
@@ -65,9 +65,8 @@ function updateText(){
     for (var i = 0; i < iconElements.length; i++){
         iconElements[i].style.color = color;
     }
-    document.getElementById("countdown").style.outline = `1px solid ${color}`;
-    document.getElementById("settings").style.outline = `1px solid ${color}`;
-    document.getElementById("Time").style.textDecoration = `underline solid ${color}`
+    document.getElementById("countdown").style.textDecoration = `underline solid ${color}`;
+    document.getElementById("time").style.outline = `3px solid ${color}`
 }
 
 
@@ -155,8 +154,6 @@ function countdown(){
             {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,0,0).getTime()}
         ]
     }
-    let thisPeriod = sessionStorage.getItem("period");
-    let nextPeriod = Number(sessionStorage.getItem("period")) + 1;
     if (877 < (now.getHours()*60) + now.getMinutes()){
         let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0)
         let [days, hours, minutes, seconds] = countTo(tommrrowStart);
@@ -188,7 +185,7 @@ function countdown(){
             }
         }
 
-    else if (new Date(schedule[Number(thisPeriod)].periodEnd).getTime() < new Date(now).getTime() && new Date(now).getTime() < new Date(schedule[nextPeriod].periodStart).getTime()){
+    else if (new Date(schedule[Number(sessionStorage.getItem("period"))].periodEnd).getTime() < new Date(now).getTime() && new Date(now).getTime() < new Date(schedule[Number(sessionStorage.getItem("period")) + 1].periodStart).getTime()){
         try{
         let [days, hours, minutes, seconds] = countTo(schedule[Number(sessionStorage.getItem("period"))+1].periodStart);
             hours = checkTime(hours);
