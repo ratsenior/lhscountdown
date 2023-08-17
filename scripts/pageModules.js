@@ -66,7 +66,7 @@ function updateText(){
         iconElements[i].style.color = color;
     }
     document.getElementById("countdown").style.textDecoration = `underline solid ${color}`;
-    document.getElementById("time").style.outline = `3px solid ${color}`
+    document.getElementById("time").style.outline = `3px solid ${color}`;
 }
 
 
@@ -97,7 +97,7 @@ function settingsClick(){
     }
 }
 function saveLunch(){
-    localStorage.setItem("lunchPeriod",document.getElementById("lunchSelect").value)
+    localStorage.setItem("lunchPeriod",document.getElementById("lunchSelect").value);
     countdown();
 }
 function loadLunch(){
@@ -112,7 +112,7 @@ function updateNotepads(){
     }
 }
 function saveNotepad(notepadNumber){
-    localStorage.setItem(`notepadData${notepadNumber}`, document.getElementById(`notepad${notepadNumber}`).value)
+    localStorage.setItem(`notepadData${notepadNumber}`, document.getElementById(`notepad${notepadNumber}`).value);
 }
 function loadNotepads(){
     for (let i = 0; i < 8; i++){
@@ -158,7 +158,7 @@ function countdown(){
         let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0)
         let [days, hours, minutes, seconds] = countTo(tommrrowStart);
             if (minutes < 0 && seconds < 0){
-                clearInterval(countTo)
+                clearInterval(countTo);
             }
             else{
                 hours = checkTime(hours);
@@ -166,14 +166,14 @@ function countdown(){
                 seconds = checkTime(seconds);
                 document.getElementById('countdown').innerHTML = hours + ":"+ minutes + ":"+ seconds;
                 document.getElementById('pageTitle').innerHTML = "LHSCD | " + hours+":"+minutes+":"+seconds;
-                setTimeout(countdown, 1000)
+                setTimeout(countdown, 1000);
             }
         }
     else if((now.getHours()*60)+now.getMinutes() < 415){
         let todayStart = new Date(todayYear,todayMonth,todayDate,6,55,0,0)
         let [days, hours, minutes, seconds] = countTo(todayStart);
             if (minutes < 0 && seconds < 0){
-                clearInterval(countTo)
+                clearInterval(countTo);
             }
             else{
                 hours = checkTime(hours);
@@ -181,7 +181,7 @@ function countdown(){
                 seconds = checkTime(seconds);
                 document.getElementById('countdown').innerHTML = hours + ":"+ minutes + ":"+ seconds;
                 document.getElementById('pageTitle').innerHTML = "LHSCD | " + hours+":"+minutes+":"+seconds;
-                setTimeout(countdown, 1000)
+                setTimeout(countdown, 1000);
             }
         }
 
@@ -223,14 +223,14 @@ function countdown(){
             setTimeout(countdown, 1000);
         } catch (error) {
             if (error instanceof RangeError) {
-                sessionStorage.setItem("period", Number((Number(period))+1))
+                sessionStorage.setItem("period", Number((Number(period))+1));
                 setTimeout(countdown, 0);
             }
             else if (error instanceof ReferenceError){
-                isWithinPeriod(schedule[0].periodStart,schedule[0].periodEnd,0)
+                isWithinPeriod(schedule[0].periodStart,schedule[0].periodEnd,0);
             } 
             else if (error instanceof TypeError){
-                location.reload()
+                location.reload();
                 }
             else {
                 throw error;
@@ -246,7 +246,7 @@ function isWithinPeriod(startTime,endTime, periodNumber){
     dateEndTime = new Date(endTime).getTime();
     now = new Date();
     if(dateStartTime < now && dateEndTime > now){
-        sessionStorage.setItem("period",Number(periodNumber))
+        sessionStorage.setItem("period",Number(periodNumber));
         return
     }
     else{
