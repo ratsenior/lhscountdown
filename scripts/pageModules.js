@@ -65,8 +65,6 @@ function updateText(){
     for (var i = 0; i < iconElements.length; i++){
         iconElements[i].style.color = color;
     }
-    document.getElementById("countdown").style.textDecoration = `underline solid ${color}`;
-    document.getElementById("time").style.outline = `3px solid ${color}`;
 }
 
 
@@ -84,13 +82,11 @@ function settingsClick(){
         if (settingsList[i].style.visibility === "hidden" || settingsList[i].style.visibility === ""){
 
             settingsList[i].style.visibility = "visible";
-            document.getElementById("settings").style.outline = `1px solid ${localStorage.getItem("txtColor")}`;
             
         }
         else{
             (settingsList[i].style.visibility = "hidden")
             if ((i+1) == (settingsList.length)){
-                document.getElementById("settings").style.outline = "none";
             }
     }
 
@@ -115,7 +111,7 @@ function saveNotepad(notepadNumber){
     localStorage.setItem(`notepadData${notepadNumber}`, document.getElementById(`notepad${notepadNumber}`).value);
 }
 function loadNotepads(){
-    for (let i = 0; i < 8; i++){
+    for (let i = 0; i < 7; i++){
         document.getElementById(`notepad${i}`).value = localStorage.getItem(`notepadData${i}`);
     }
 }
@@ -284,5 +280,4 @@ function initalize(){
     loadNotepads();
     loadLunch();
     countdown();
-    document.getElementById("settings").style.outline = "none";
 }
