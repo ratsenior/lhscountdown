@@ -1,0 +1,25 @@
+.col-md-12 {
+  border-width: 3px;
+  border-style: solid;
+}
+
+.col-md-4 {
+  border-style: solid;
+}
+
+textarea {
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 5px;
+  overflow: auto;
+}
+
+#notepads {
+  height: 200px;
+}
+
+#settings:hover {
+  cursor: pointer;
+}
+

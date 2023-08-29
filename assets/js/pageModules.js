@@ -61,10 +61,6 @@ function updateText(){
     for (var i = 0; i < textElements.length; i++){
         textElements[i].style.color = color;
     }
-    const iconElements = document.getElementsByClassName("material-icons");
-    for (var i = 0; i < iconElements.length; i++){
-        iconElements[i].style.color = color;
-    }
 }
 
 
@@ -73,7 +69,7 @@ function faviconSelector(){
     let today = new Date();
     let date = String(today.getDate());
     const favicon = document.getElementById("favicon");
-    favicon.setAttribute("href",`images/date_icons/${date}.png`);
+    favicon.setAttribute("href",`/assets/img/date_icons/${date}.png`);
 }
 function settingsClick(){
     const settingsList = document.getElementsByClassName("options");
@@ -103,7 +99,6 @@ function updateNotepads(){
     let notepads = document.getElementsByTagName("textarea");
     for (let i = 0; i < notepads.length; i++){
         notepads[i].style.background = localStorage.getItem("bgColor");
-        notepads[i].style.outline = `1px solid ${localStorage.getItem("txtColor")}`;
         notepads[i].style.color = localStorage.getItem("txtColor");
     }
 }
@@ -124,7 +119,7 @@ function countdown(){
     const todayYear = now.getFullYear();
     const todayMonth = now.getMonth(); /* date format = year, month (0 = jan, 11 = dec), day (ex. 8th), hour, minute, second, millisecond*/
     
-    if (document.getElementById("lunchSelect").value == "a"){
+    if (localStorage.getItem("lunchPeriod") == "a"){
         window.schedule = [
         {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
         {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,0,0).getTime()},
@@ -137,7 +132,7 @@ function countdown(){
         {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,0,0).getTime()}
     ]
     }
-    else if(document.getElementById("lunchSelect").value == "c"){
+    else if(localStorage.getItem("lunchPeriod") == "c"){
         window.schedule = [
             {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
             {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,0,0).getTime()},
@@ -272,7 +267,6 @@ function countTo(timeObject) {
 //Starts all needed "start" functions
 function initalize(){
     sessionStorage.setItem("period",0);
-    saveLunch();
     startTime();
     faviconSelector();
     backgroundColorChange();

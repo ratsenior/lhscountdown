@@ -4,56 +4,46 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title id="pageTitle">lhscountdown</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/OpenSans.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title id="pageTitle">LHSCD</title>
     <link id="favicon" rel="icon" type="image/png" href="image_name.png">
+    <script src="https://kit.fontawesome.com/fd1edd356e.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="margin-top: 16px;" onload="initalize()">
-    <script type="text/javascript" src="/scripts/pageModules.js"> </script>
-    <div class="row" style="margin: 50px;margin-top: 25px;">
-        <div class="col-lg-2 col-xl-2"><img src="images/final.jpg" style="width: 150px;margin: 0px;margin-top: 0px;margin-left: 0px;position: relative;" width="150" height="150"></div>
-        <div class="col-lg-7 col-xl-10" style="position: relative;">
-            <h1 id="countdown" class="content" style="width: 720px;position: relative;text-align: center;"><strong>function countdown();</strong></h1>
-            <h2 id="time" class=" content"style="width: 682px;position: relative;text-align: center;">function startTime();</h2>
+<body style="font-family: 'Open Sans', sans-serif;overflow: hidden;width: 100%;height: 100%;" onload="initalize()">
+    <div class="container" style="border-width: 3px;border-style: solid;margin: 15px;width: auto;height: auto;">
+        <div class="row">
+            <div class="col-md-12 col-xxl-12">
+                <h1 id="countdown" class="content" style="padding: 17px;text-align: center;font-weight: bold;font-size: 60px;">function countdown();</h1>
+                <h2 id="time" class="content" style="text-align: center;font-size: 40px;">function startTime();</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-3 col-xl-3" align="center"><i class="la la-gear content" id="settings" style="font-size: 71px;position: relative;" onclick="settingsClick()"></i>
+                <ul class="list-group options" style="margin-bottom: 22px;">
+                    <li class="list-group-item">
+                        <h2 style="font-size: 20px;">Background Color:</h2><input type="color" id="backgroundColorInput" onchange="inheritColorSelectionBg()" value="#000000">
+                    </li>
+                    <li class="list-group-item">
+                        <h2 style="font-size: 20px;">Text Color:</h2><input type="color" id="textColorInput" onchange="inheritColorSelectionTxt()" value="#FFFFFF">
+                    </li>
+                    <li class="list-group-item"><h3 class="options" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Select Lunch:</h3>
+<select class="options" id="lunchSelect" onchange="saveLunch()">
+        <option value="a" selected="">A</option>
+        <option value="c">C</option>
+</select></li>
+                    <li class="list-group-item"><a class="fab fa-github" href="https://github.com/ratsenior/lhscountdown" target="_blank" style="font-size: 20px;color: var(--bs-body-color);"> Github</a></li>
+                    <li class="list-group-item"><a class="fas fa-envelope-open" href="mailto:ra25226@student.lisle202.org" style="font-size: 20px;color: var(--bs-body-color);"> Email Issues</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-lg-9 col-xl-8" id="notepads" align="center" style="overflow: scroll;max-height: 50%;height: 500px;"><textarea id="notepad0" rows="5" onchange="saveNotepad(0)"></textarea><textarea id="notepad1" rows="5" onchange="saveNotepad(1)" style="width: 100%;"></textarea><textarea id="notepad2" rows="5" onchange="saveNotepad(2)"></textarea><textarea id="notepad3" rows="5" onchange="saveNotepad(3)"></textarea><textarea id="notepad4" rows="5" onchange="saveNotepad(4)"></textarea><textarea id="notepad5" rows="5" onchange="saveNotepad(5)"></textarea><textarea id="notepad6" rows="5" onchange="saveNotepad(6)"></textarea></div>
         </div>
     </div>
-    <div id = "settings" class="row" style="margin: 0px;margin-top: 0px;position: relative;">
-        <div class="col-lg-3 offset-lg-0" align="center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-gear content" style="font-size: 54px;position: sticky;display: grid;" onclick="settingsClick()">
-                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path>
-                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path>
-            </svg>
-            <ul class="list-group options">
-                <li class="list-group-item options"><span class="options"></span>
-                    <h3 class="options" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Background Color:</h3>
-                    <input type="color" class="options" id="backgroundColorInput" onchange="inheritColorSelectionBg()" value = "#000000">
-                </li>
-                <li class="list-group-item options"><span class="options"></span>
-                    <h3 class="options" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Text Color:</h3>
-                    <input type="color" class="options" id="textColorInput" onchange="inheritColorSelectionTxt()" value = "#FFFFFF">
-                </li>
-                <li class="list-group-item options"><span class="options"></span>
-                    <h3 class="options" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Select Lunch:</h3>
-                    <select class="options" id="lunchSelect">
-                            <option value="a" selected="">A</option>
-                            <option value="c">C</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-        <div class="col"><textarea id="notepad0" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(0)"></textarea>
-            <textarea id="notepad1" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(1)"></textarea>
-            <textarea id="notepad2" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(2)"></textarea>
-            <textarea id="notepad3" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(3)"></textarea>
-            <textarea id="notepad4" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(4)"></textarea>
-            <textarea id="notepad5" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(5)"></textarea>
-            <textarea id="notepad6" rows="6" cols="35" style="padding: 2px;margin: 5px;" onchange="saveNotepad(6)"></textarea>
-        </div>
-    </div>
-    <script src="scripts/bootstrap.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/pageModules.js"></script>
 </body>
 
 </html>
