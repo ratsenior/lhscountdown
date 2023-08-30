@@ -193,6 +193,7 @@ function countdown(){
                 {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,4,0).getTime()}
             ]
             }
+        else{
         window.schedule = [
                 {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
                 {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,4,0).getTime()},
@@ -203,7 +204,8 @@ function countdown(){
                 {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,12,24,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,49,4,0).getTime()},
                 {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,43,4,0).getTime()},
                 {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
-        ]
+            ]
+        }
     }
     if (877 < (now.getHours()*60) + now.getMinutes()){
         let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0)
