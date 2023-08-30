@@ -1,18 +1,38 @@
+body, html{
+  height: 100%;
+  overflow: hidden;
+}
+
 .col-md-12 {
   border-width: 3px;
   border-style: solid;
+}
+
+label{
+  right: 100%;
+}
+
+.formfield{
+  display: flex;
+  align-items: center;
 }
 
 .col-md-4 {
   border-style: solid;
 }
 
+#notepads{
+  height: 200px;
+  overflow-x: hidden;
+}
+
 textarea {
   resize: none;
   box-sizing: border-box;
-  width: 100%;
+  width: 95%;
   margin: 5px;
-  overflow: scroll;
+  overflow: hidden;
+  border: solid;
 }
 
 
@@ -22,11 +42,21 @@ textarea {
 }
 
 .row{
-  overflow: hidden; 
+  overflow: hidden;
 }
 
+.no-padding{
+  padding: 15px!important;
+}
 
-[class*="col-"]{
-  margin-bottom: -99999px;
-  padding-bottom: 99999px;
+.wrapper {
+  position: relative;
+  flex: 1 1 auto;
+}
+.scroll {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  width: 100%;
 }
