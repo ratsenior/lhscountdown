@@ -8,6 +8,14 @@ body, html{
   border-style: solid;
 }
 
+label{
+  right: 100%;
+}
+
+.formfield{
+  display: flex;
+  align-items: center;
+}
 
 .col-md-4 {
   border-style: solid;
@@ -21,7 +29,7 @@ body, html{
 textarea {
   resize: none;
   box-sizing: border-box;
-  width: 100%;
+  width: 95%;
   margin: 5px;
   overflow: hidden;
   border: solid;
