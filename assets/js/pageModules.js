@@ -126,83 +126,83 @@ function countdown(){
     if (localStorage.getItem("lunchPeriod") == "a"){
         if (oneprideDates.includes(date)){
             window.schedule = [
-                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
-                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,31,0,0).getTime()},
-                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,35,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,16,0,0).getTime()},
-                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,20,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,1,0,0).getTime()},
-                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,5,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,46,0,0).getTime()},
-                {period:"OnePride",periodStart: new Date(todayYear,todayMonth,todayDate,10,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,40,0,0).getTime()},
-                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,11,44,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,11,0,0).getTime()},
-                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,12,15,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,7,0,0).getTime()},
-                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,13,11,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,52,0,0).getTime()},
-                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,56,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,0,0).getTime()}
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,31,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,35,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,16,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,20,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,1,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,5,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,46,4,0).getTime()},
+                {period:"OnePride",periodStart: new Date(todayYear,todayMonth,todayDate,10,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,40,4,0).getTime()},
+                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,11,44,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,11,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,12,15,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,7,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,13,11,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,52,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,56,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
             ]
         }
         else if (plcDates.includes(date)){
             window.schedule = [
-                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
-                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,33,0,0).getTime()},
-                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,37,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,20,0,0).getTime()},
-                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,24,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,7,0,0).getTime()},
-                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,11,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,54,0,0).getTime()},
-                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,10,58,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,23,0,0).getTime()},
-                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,27,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,21,0,0).getTime()},
-                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,25,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,8,0,0).getTime()},
-                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,0,0).getTime()}
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,33,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,37,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,20,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,24,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,7,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,11,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,54,4,0).getTime()},
+                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,10,58,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,23,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,27,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,21,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,25,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,8,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,4,0).getTime()}
             ]
             }
         else{
         window.schedule = [
-                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
-                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,0,0).getTime()},
-                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,44,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,34,0,0).getTime()},
-                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,38,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,28,0,0).getTime()},
-                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,32,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,22,0,0).getTime()},
-                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,11,26,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,51,0,0).getTime()},
-                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,49,0,0).getTime()},
-                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,53,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,43,0,0).getTime()},
-                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,0,0).getTime()}
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,44,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,34,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,38,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,28,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,32,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,22,4,0).getTime()},
+                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,11,26,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,51,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,49,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,43,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
     ]
         }
     }
     else if(localStorage.getItem("lunchPeriod") == "c"){
         if (oneprideDates.includes(date)){
             window.schedule = [
-                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
-                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,31,0,0).getTime()},
-                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,35,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,16,0,0).getTime()},
-                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,20,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,1,0,0).getTime()},
-                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,5,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,46,0,0).getTime()},
-                {period:"OnePride",periodStart: new Date(todayYear,todayMonth,todayDate,10,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,40,0,0).getTime()},
-                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,44,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,36,0,0).getTime()},
-                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,12,40,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,7,0,0).getTime()},
-                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,13,11,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,52,0,0).getTime()},
-                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,56,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,0,0).getTime()}
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,31,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,35,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,16,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,20,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,1,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,5,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,46,4,0).getTime()},
+                {period:"OnePride",periodStart: new Date(todayYear,todayMonth,todayDate,10,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,40,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,44,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,36,4,0).getTime()},
+                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,12,40,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,7,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,13,11,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,52,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,56,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
             ]
         }
         else if (plcDates.includes(date)){
             window.schedule = [
-                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
-                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,33,0,0).getTime()},
-                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,37,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,20,0,0).getTime()},
-                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,24,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,7,0,0).getTime()},
-                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,11,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,54,0,0).getTime()},
-                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,10,58,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,52,0,0).getTime()},
-                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,11,56,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,21,0,0).getTime()},
-                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,25,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,8,0,0).getTime()},
-                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,0,0).getTime()}
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,33,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,37,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,20,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,24,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,7,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,11,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,54,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,10,58,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,52,4,0).getTime()},
+                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,11,56,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,21,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,25,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,8,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,4,0).getTime()}
             ]
             }
         window.schedule = [
-                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
-                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,0,0).getTime()},
-                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,44,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,34,0,0).getTime()},
-                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,38,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,28,0,0).getTime()},
-                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,32,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,22,0,0).getTime()},
-                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,26,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,20,0,0).getTime()}, 
-                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,12,24,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,49,0,0).getTime()},
-                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,53,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,43,0,0).getTime()},
-                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,0,0).getTime()}
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,40,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,44,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,34,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,38,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,28,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,32,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,22,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,26,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,20,4,0).getTime()}, 
+                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,12,24,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,49,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,43,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,47,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
         ]
     }
     if (877 < (now.getHours()*60) + now.getMinutes()){
