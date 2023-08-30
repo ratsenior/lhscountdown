@@ -14,14 +14,14 @@
 </head>
 
 <body style="font-family: 'Open Sans', sans-serif;width: 100%;height: 100%;" onload="initalize()">
-    <div class="container flex-shrink-1" style="border-width: 3px;border-style: solid;margin: 15px;width: auto;height: 70%;">
-        <div class="row">
-            <div class="col-md-12 col-xxl-12">
-                <h1 id="countdown" class="content" style="padding: 17px;text-align: center;font-weight: bold;font-size: 60px;">Select lunch in settings</h1>
-                <h2 id="time" class="content" style="text-align: center;font-size: 40px;">function startTime();</h2>
+    <div class="container-fluid no-padding" style="margin: 15px;width: auto;height:100%;">
+        <div id="timers" class="row" align="center">
+            <div class="col-md-12 col-xxl-12" style="padding-top:0px;overflow:clip">
+                <h1 id="countdown" class="content" style="text-align: center;font-weight: bold;font-size: 60px;padding:10px;">Select lunch in settings</h1>
+                <h2 id="time" class="content" style="text-align: center;font-size: 40px;margin-bottom: 10px;">function startTime();</h2>
             </div>
         </div>
-        <div class="row">
+        <div id="pageSections" class="row">
             <div class="col-md-4 col-lg-3 col-xl-3" align="center"><i class="la la-gear content" id="settings" style="font-size: 71px;position: relative; width: 25%;" onclick="settingsClick()"></i>
                 <ul class="list-group options" style="margin-bottom: 22px;">
                     <li class="list-group-item">
@@ -39,14 +39,23 @@
                     <li class="list-group-item"><a class="fas fa-envelope-open" href="mailto:ra25226@student.lisle202.org" style="font-size: 20px;color: var(--bs-body-color);"> Email Issues</a></li>
                 </ul>
             </div>
-            <div class="col-md-4 col-lg-9 col-xl-8" id="notepads" align="center" style="overflow: scroll; width: 75%; height: 1px;">
-                <textarea id="notepad0" rows="5" onchange="saveNotepad(0)"></textarea>
-                <textarea id="notepad1" rows="5" onchange="saveNotepad(1)"></textarea>
-                <textarea id="notepad2" rows="5" onchange="saveNotepad(2)"></textarea>
-                <textarea id="notepad3" rows="5" onchange="saveNotepad(3)"></textarea>
-                <textarea id="notepad4" rows="5" onchange="saveNotepad(4)"></textarea>
-                <textarea id="notepad5" rows="5" onchange="saveNotepad(5)"></textarea>
-                <textarea id="notepad6" rows="5" onchange="saveNotepad(6)"></textarea>
+            <div id="notepadSection" class="col-md-4 col-lg-9 col-xl-8 d-flex flex-column position-relative" align="center" style="overflow-y: scroll; overflow-x: hidden; width: 75%;height: 2px;padding-bottom: 35%;padding-right: 12px;">
+                <div id="notepads" class="scroll" style="height: 100%;">
+                    <label class="content" for="notepad0">1.</label>
+                    <textarea id="notepad0" rows="5" onchange="saveNotepad(0)"></textarea>
+                    <label class="content" for="notepad1">2.</label>
+                    <textarea id="notepad1" rows="5" onchange="saveNotepad(1)"></textarea>
+                    <label class="content" for="notepad2">3.</label>
+                    <textarea id="notepad2" rows="5" onchange="saveNotepad(2)"></textarea>
+                    <label class="content" for="notepad3">4.</label>
+                    <textarea id="notepad3" rows="5" onchange="saveNotepad(3)"></textarea>
+                    <label class="content" for="notepad4">5.</label>
+                    <textarea id="notepad4" rows="5" onchange="saveNotepad(4)"></textarea>
+                    <label class="content" for="notepad5">6.</label>
+                    <textarea id="notepad5" rows="5" onchange="saveNotepad(5)"></textarea>
+                    <label class="content" for="notepad6">7.</label>
+                    <textarea id="notepad6" rows="5" onchange="saveNotepad(6)"></textarea>
+                </div>
             </div>
         </div>
     </div>
