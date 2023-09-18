@@ -1,6 +1,5 @@
 body, html{
   height: 100%;
-  overflow: hidden;
 }
 
 .col-md-12 {
@@ -31,7 +30,7 @@ textarea {
   box-sizing: border-box;
   width: 95%;
   margin: 5px;
-  overflow: hidden;
+  overflow-y: hidden;
   border: solid;
 }
 
@@ -46,7 +45,9 @@ textarea {
 }
 
 .no-padding{
-  padding: 15px!important;
+  padding: 20px!important;
+  padding-top: 0px!important;
+  margin-top: 5px!important;
 }
 
 .wrapper {

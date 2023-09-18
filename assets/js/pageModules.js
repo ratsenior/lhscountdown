@@ -53,7 +53,6 @@ function textColorChange(){
 function inheritColorSelectionTxt(){
     localStorage.setItem("txtColor", document.getElementById("textColorInput").value);
     updateText();
-    updateNotepads(); 
 }
 function updateText(){
     color = localStorage.getItem("txtColor")
@@ -63,6 +62,22 @@ function updateText(){
     }
 }
 
+function inheritColorSelectionAccents(){
+    localStorage.setItem("accentColor", document.getElementById("accentColorInput").value);
+    document.getElementById("mainBody").style.color = localStorage.getItem("accentColor");
+    updateNotepads();
+}
+
+function accentsColorChange(){
+    if (!localStorage.getItem("accentColor")){
+        inheritColorSelectionAccents();
+    }
+    else {
+        document.getElementById("mainBody").style.color = localStorage.getItem("accentColor");
+        document.getElementById("accentColorInput").setAttribute("value",localStorage.getItem("accentColor"));
+        updateNotepads();
+    }
+}
 
 //misc functions
 function faviconSelector(){
@@ -99,7 +114,7 @@ function updateNotepads(){
     let notepads = document.getElementsByTagName("textarea");
     for (let i = 0; i < notepads.length; i++){
         notepads[i].style.background = localStorage.getItem("bgColor");
-        notepads[i].style.color = localStorage.getItem("txtColor");
+        notepads[i].style.color = localStorage.getItem("accentColor");
     }
 }
 function saveNotepad(notepadNumber){
@@ -333,6 +348,7 @@ function initalize(){
     faviconSelector();
     backgroundColorChange();
     textColorChange();
+    accentsColorChange();
     loadNotepads();
     loadLunch();
     countdown();
