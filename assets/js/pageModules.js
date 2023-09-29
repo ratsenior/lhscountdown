@@ -136,6 +136,7 @@ function countdown(){
 
     const oneprideDates = ["7/30","8/13","8/20","8/27","9/18","9/25","10/8","10/15","10/29","11/13","0/17","0/24","0/31","1/14","1/21","1/28","2/13","2/20","3/17","3/24","4/8","4/15"];
     const plcDates = ["8/6","9/4","9/12","10/1","11/6","0/10","1/7","2/6","3/3","4/1"];
+    const assemblyDates = ["8/29"];
     let date = `${todayMonth}/${todayDate}`
 
     if (localStorage.getItem("lunchPeriod") == "a"){
@@ -166,6 +167,19 @@ function countdown(){
                 {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,4,0).getTime()}
             ]
             }
+        else if (assemblyDates.includes(date)){
+            window.schedule = [
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,30,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,34,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,14,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,18,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,58,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,2,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,42,4,0).getTime()},
+                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,10,46,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,11,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,15,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,9,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,13,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,57,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,37,4,0).getTime()}
+            ]
+        }
         else{
         window.schedule = [
                 {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
@@ -208,6 +222,19 @@ function countdown(){
                 {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,12,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,55,4,0).getTime()}
             ]
             }
+        else if (assemblyDates.includes(date)){
+            window.schedule = [
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,30,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,34,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,14,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,18,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,58,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,2,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,42,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,10,46,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,40,4,0).getTime()},
+                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,11,44,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,9,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,13,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,57,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,37,4,0).getTime()}
+            ]
+        }
         else{
             window.schedule = [
                 {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,0,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,0,0).getTime()},
