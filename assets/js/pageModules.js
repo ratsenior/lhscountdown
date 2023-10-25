@@ -1,3 +1,28 @@
+async function versionCheck(){
+    const localVersion = versionInteger((require('./version.json')).version);
+    const publishedVersion = versionInteger((await (await fetch("https://lhscountdown.com/version.json")).json()).version);
+    if(publishedVersion > localVersion){
+        console.log("Out of date");
+    }
+    else{
+        console.log("version is up-to-date or in development container");
+    }
+}
+
+function versionInteger(versionStr){
+    let versionInt = 0;
+    const versionArr = versionStr.split(".");
+    for(let i = 0; i < versionArr.length; i++){
+        versionInt = Number(versionInt + versionArr[i]);
+    };
+    return versionInt; 
+}
+
+function storeVersion(){
+    const localVersion = versionInteger((require('./version.json')).version);
+    localStorage.setItem("localVersion",localVersion)
+}
+
 //initalize date
 function startTime() {
     const today = new Date();
@@ -125,6 +150,7 @@ function loadNotepads(){
         document.getElementById(`notepad${i}`).value = localStorage.getItem(`notepadData${i}`);
     }
 }
+
 
 
 //countdown
@@ -378,5 +404,6 @@ function initalize(){
     accentsColorChange();
     loadNotepads();
     loadLunch();
+    storeVersion();
     countdown();
 }

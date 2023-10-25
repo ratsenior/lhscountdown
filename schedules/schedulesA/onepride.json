@@ -1,0 +1,40 @@
+{"period0":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()"
+    },
+"period1":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,8,31,4,0).getTime()"
+    },
+"period2":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,8,35,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,9,16,4,0).getTime()"
+    },
+"period3":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,9,20,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,10,1,4,0).getTime()"
+    },
+"period4":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,10,5,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,10,46,4,0).getTime()"
+    },
+"OnePride":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,10,50,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,11,40,4,0).getTime()"
+    },
+"periodA":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,11,44,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,12,11,4,0).getTime()"},
+"period5":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,12,15,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,13,7,4,0).getTime()"
+    },
+"period6":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,13,11,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,13,52,4,0).getTime()"
+    },
+"period7":{
+    "periodStart": "new Date(todayYear,todayMonth,todayDate,13,56,4,0).getTime()",
+    "periodEnd": "new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()"
+    }
+}
