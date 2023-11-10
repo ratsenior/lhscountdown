@@ -1,28 +1,3 @@
-async function versionCheck(){
-    const localVersion = versionInteger((require('./version.json')).version);
-    const publishedVersion = versionInteger((await (await fetch("https://lhscountdown.com/version.json")).json()).version);
-    if(publishedVersion > localVersion){
-        console.log("Out of date");
-    }
-    else{
-        console.log("version is up-to-date or in development container");
-    }
-}
-
-function versionInteger(versionStr){
-    let versionInt = 0;
-    const versionArr = versionStr.split(".");
-    for(let i = 0; i < versionArr.length; i++){
-        versionInt = Number(versionInt + versionArr[i]);
-    };
-    return versionInt; 
-}
-
-function storeVersion(){
-    const localVersion = versionInteger((require('./version.json')).version);
-    localStorage.setItem("localVersion",localVersion)
-}
-
 //initalize date
 function startTime() {
     const today = new Date();
@@ -130,7 +105,7 @@ function settingsClick(){
 }
 function saveLunch(){
     localStorage.setItem("lunchPeriod",document.getElementById("lunchSelect").value);
-    countdown();
+    scheduleAssign();
 }
 function loadLunch(){
     document.getElementById("lunchSelect").value = localStorage.getItem("lunchPeriod");
@@ -154,15 +129,14 @@ function loadNotepads(){
 
 
 //countdown
-
-function schedulePull(lunch,type){
+async function schedulePull(lunch,type){
     const now = new Date();
     const todayDate = now.getDate(); //day as a numeric value ex. the 8th of x month
     const todayYear = now.getFullYear();
     const todayMonth = now.getMonth();
-    schedule = JSON.parse(JSON.stringify(require(`./schedules/schedules${lunch}/${type}.json`)));
+    schedule = JSON.parse(JSON.stringify(await (await fetch(`https://lhscountdown.com/schedules/schedules${lunch}/${type}.json`)).json()));
     let timeArr = [];
-    for(let i = 0; i < Object.keys(schedule).length; i++){
+    for(let i = 0; i < Number(Object.keys(schedule).length; i+2){
         let indexI = Object.keys(schedule)[i];
         const startPathI = `schedule.${indexI}.periodStart`;
         const endPathI = `schedule.${indexI}.periodEnd`;
@@ -173,8 +147,7 @@ function schedulePull(lunch,type){
 return timeArr;
 }
 
-
-function countdown(){
+function scheduleAssign(){
     const now = new Date();
     const todayDate = now.getDate(); //day as a numeric value ex. the 8th of x month
     const todayYear = now.getFullYear();
@@ -187,34 +160,44 @@ function countdown(){
 
     if (localStorage.getItem("lunchPeriod") == "a"){
         if (oneprideDates.includes(date)){
-            window.schedule = schedulePull("A","onepride");
+            return ["A","onepride"];
         }
         else if (plcDates.includes(date)){
-            window.schedule = schedulePull("A","plc");
+            return ["A","plc"];
         }
         else if (assemblyDates.includes(date)){
-            window.schedule = schedulePull("A","assembly");
+            return ["A","assembly"];
         }
         else{
-        window.schedule = schedulePull("A","regular");
+            return ["A","regular"];
         }
     }
     else if(localStorage.getItem("lunchPeriod") == "c"){
         if (oneprideDates.includes(date)){
-            window.schedule = schedulePull("C","onepride");
+            return ["C","onepride"];
         }
         else if (plcDates.includes(date)){
-            window.schedule = schedulePull("C","plc");
+            return ["C","plc"];
             }
         else if (assemblyDates.includes(date)){
-            window.schedule = schedulePull("C","assembly");
+            return ["C","assembly"];
         }
         else{
-            window.schedule = schedulePull("C","regular");
+            return ["C","regular"];
         }
     }
+}
+
+
+function countdown(){
+    const now = new Date();
+    const todayDate = now.getDate(); //day as a numeric value ex. the 8th of x month
+    const todayYear = now.getFullYear();
+    const todayMonth = now.getMonth(); /* date format = year, month (0 = jan, 11 = dec), day (ex. 8th), hour, minute, second, millisecond*/
+    
+    schedule = JSON.parse(sessionStorage.getItem("schedule"));
     if (877 < (now.getHours()*60) + now.getMinutes()){
-        let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0)
+        let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0);
         let [days, hours, minutes, seconds] = countTo(tommrrowStart);
             if (minutes < 0 && seconds < 0){
                 clearInterval(countTo);
@@ -244,9 +227,10 @@ function countdown(){
             }
         }
 
-    else if (schedule[Number(sessionStorage.getItem("period")] < new Date(now).getTime() && new Date(now).getTime() < new Date(schedule[Number(sessionStorage.getItem("period")) + 1]){
+    else if (schedule[Number(sessionStorage.getItem("period"))] < new Date(now).getTime() && 
+            new Date(now).getTime() < new Date(schedule[Number(sessionStorage.getItem("period") + 1)])){
         try{
-        let [days, hours, minutes, seconds] = countTo(schedule[Number(sessionStorage.getItem("period"))+1].periodStart);
+        let [days, hours, minutes, seconds] = countTo(schedule[Number(sessionStorage.getItem("period"))+1]);
             hours = checkTime(hours);
             minutes = checkTime(minutes);
             seconds = checkTime(seconds);
@@ -255,7 +239,7 @@ function countdown(){
             setTimeout(countdown, 1000);
         } catch (error){
             if (error instanceof RangeError) {
-                sessionStorage.setItem("period", Number((Number(period))+1))
+                sessionStorage.setItem("period", Number((Number(period))+2))
                 setTimeout(countdown, 0);
             }
             else if (error instanceof ReferenceError){
@@ -273,7 +257,7 @@ function countdown(){
     else{
         let period = sessionStorage.getItem("period")
         try {
-            let [days, hours, minutes, seconds] = countTo(schedule[sessionStorage.getItem("period")].periodEnd);
+            let [days, hours, minutes, seconds] = countTo(schedule[sessionStorage.getItem("period")]+1);
             hours = checkTime(hours);
             minutes = checkTime(minutes);
             seconds = checkTime(seconds);
@@ -286,7 +270,7 @@ function countdown(){
                 setTimeout(countdown, 0);
             }
             else if (error instanceof ReferenceError){
-                isWithinPeriod(schedule[0].periodStart,schedule[0].periodEnd,0);
+                isWithinPeriod(schedule[0],schedule[1]);
             } 
             else if (error instanceof TypeError){
                 location.reload();
@@ -335,6 +319,7 @@ function countTo(timeObject) {
 
 //Starts all needed "start" functions
 function initalize(){
+    schedulePull(scheduleAssign()[0],scheduleAssign()[1]);
     sessionStorage.setItem("period",0);
     startTime();
     faviconSelector();
@@ -343,6 +328,5 @@ function initalize(){
     accentsColorChange();
     loadNotepads();
     loadLunch();
-    storeVersion();
     countdown();
 }
