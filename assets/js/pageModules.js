@@ -137,6 +137,7 @@ function countdown(){
     const oneprideDates = ["7/30","8/13","8/20","8/27","9/11","9/18","9/25","10/8","10/15","10/29","11/13","0/17","0/24","0/31","1/14","1/21","1/28","2/13","2/20","3/17","3/24","4/8","4/15"];
     const plcDates = ["8/6","9/4","9/12","10/1","11/6","0/10","1/7","2/6","3/3","4/1"];
     const assemblyDates = ["8/29", "1/5"];
+    const fiveEssentialsDates = ["1/7"]
     let date = `${todayMonth}/${todayDate}`
 
     if (localStorage.getItem("lunchPeriod") == "a"){
@@ -178,6 +179,20 @@ function countdown(){
                 {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,15,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,9,4,0).getTime()},
                 {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,13,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime()},
                 {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,57,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,30,4,0).getTime()}
+            ]
+        }
+        else if (fiveEssentialsDates.includes(date)){
+            window.schedule = [
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,35,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,39,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,24,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,28,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,13,4,0).getTime()},
+                {period:"Survey",periodStart: new Date(todayYear,todayMonth,todayDate,10,15,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,43,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,47,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,32,4,0).getTime()},
+                {period:"A",periodStart: new Date(todayYear,todayMonth,todayDate,11,36,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,1,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,12,5,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,59,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,13,3,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,48,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,52,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
             ]
         }
         
@@ -234,6 +249,20 @@ function countdown(){
                 {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,11,44,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,9,4,0).getTime()},
                 {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,12,13,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,53,4,0).getTime()},
                 {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,57,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,30,4,0).getTime()}
+            ]
+        }
+        else if (fiveEssentialsDates.includes(date)){
+            window.schedule = [
+                {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+                {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,35,4,0).getTime()},
+                {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,39,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,24,4,0).getTime()},
+                {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,9,28,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,13,4,0).getTime()},
+                {period:"Survey",periodStart: new Date(todayYear,todayMonth,todayDate,10,15,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,43,4,0).getTime()},
+                {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,10,47,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,32,4,0).getTime()},
+                {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,11,36,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,30,4,0).getTime()},
+                {period:"C",periodStart: new Date(todayYear,todayMonth,todayDate,12,34,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,12,59,4,0).getTime()},
+                {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,13,3,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,13,48,4,0).getTime()},
+                {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,13,52,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,14,37,4,0).getTime()}
             ]
         }
         else{
