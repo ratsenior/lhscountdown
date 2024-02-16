@@ -138,6 +138,7 @@ function countdown(){
     const plcDates = ["8/6","9/4","9/12","10/1","11/6","0/10","1/7","2/6","3/3","4/1"];
     const assemblyDates = ["8/29", "1/5"];
     const fiveEssentialsDates = ["1/8"]
+    const halfDays = ["1/16"]
     let date = `${todayMonth}/${todayDate}`
 
     if (localStorage.getItem("lunchPeriod") == "a"){
@@ -280,6 +281,19 @@ function countdown(){
         }
     }
 
+    if (halfDays.includes(date)){
+        window.schedule = [
+            {period:"0",periodStart: new Date(todayYear,todayMonth,todayDate,6,55,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,7,45,4,0).getTime()},
+            {period:"1",periodStart: new Date(todayYear,todayMonth,todayDate,7,50,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,17,4,0).getTime()},
+            {period:"2",periodStart: new Date(todayYear,todayMonth,todayDate,8,21,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,8,48,4,0).getTime()},
+            {period:"3",periodStart: new Date(todayYear,todayMonth,todayDate,8,52,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,19,4,0).getTime()},
+            {period:"4",periodStart: new Date(todayYear,todayMonth,todayDate,9,23,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,9,50,4,0).getTime()},
+            {period:"5",periodStart: new Date(todayYear,todayMonth,todayDate,9,54,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,21,4,0).getTime()},
+            {period:"6",periodStart: new Date(todayYear,todayMonth,todayDate,10,25,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,10,52,4,0).getTime()},
+            {period:"7",periodStart: new Date(todayYear,todayMonth,todayDate,10,56,4,0).getTime(),periodEnd: new Date(todayYear,todayMonth,todayDate,11,22,4,0).getTime()}
+
+        ]
+    }
     if (877 < (now.getHours()*60) + now.getMinutes()){
         let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0)
         let [days, hours, minutes, seconds] = countTo(tommrrowStart);
