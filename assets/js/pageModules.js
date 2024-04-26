@@ -138,7 +138,7 @@ function countdown(){
     const plcDates = ["8/6","9/4","9/12","10/1","11/6","0/10","1/7","2/6","3/3","4/1"];
     const assemblyDates = ["8/29", "1/5", "2/22"];
     const fiveEssentialsDates = ["1/8"]
-    const halfDays = ["1/16"]
+    const halfDays = ["1/16", "3/26"]
     let date = `${todayMonth}/${todayDate}`
 
     if (localStorage.getItem("lunchPeriod") == "a"){
