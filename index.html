@@ -1,92 +1,113 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/index.js"></script>
     <title id="pageTitle">LHSCD</title>
-    <link id="favicon" rel="icon" type="image/png" href="image_name.png">
+    <link id="favicon" rel="icon" type="image/png" href="assets/img/final.jpg">
     <script src="https://kit.fontawesome.com/fd1edd356e.js" crossorigin="anonymous"></script>
 </head>
 
 <body style="font-family: 'Open Sans', sans-serif;width: 100%;" onload="initalize()">
-    <div class="container-fluid no-padding" style="margin: 15px;width: auto;height:100%;" id="mainBody">
-        <div id="timers" class="row" align="center">
-            <div class="col-md-12 col-xxl-12" style="padding-top:0px;overflow:clip">
-                <h1 id="countdown" class="content" style="text-align: center;font-weight: bold;font-size: 60px;padding:10px;">Select lunch in settings</h1>
-                <h2 id="time" class="content" style="text-align: center;font-size: 40px;margin-bottom: 10px;">function startTime();</h2>
-            </div>
+    <div id="mainframe">
+        <div id="header" class="mainshadow">
+            <h1 id="countdown" class="content">Countdown</h1>
+            <h2 id="time" class="content">Clock</h2>
+            <h2 id="date" class="content">Date</h2>
         </div>
-        <div id="pageSections" class="row">
-            <div class="col-md-4 col-lg-3 col-xl-3" align="center"><i class="la la-gear content" id="settings" style="font-size: 50px;position: relative; width: 25%; overflow-y: hidden;" onclick="settingsClick()"></i>
-                <ul class="list-group options" style="margin-bottom: 0px;">
-                    <li class="list-group-item">
-                        <h2 style="font-size: 20px;">Background Color:</h2><input type="color" id="backgroundColorInput" onchange="inheritColorSelectionBg()" value="#000000">
-                    </li>
-                    <li class="list-group-item">
-                        <h2 style="font-size: 20px;">Text Color:</h2><input type="color" id="textColorInput" onchange="inheritColorSelectionTxt()" value="#FFFFFF">
-                    </li>
-                    <li class ="list-group-item">
-                        <h2 style="font-size: 20px;">Accents Color:</h2><input type="color" id="accentColorInput" onchange="inheritColorSelectionAccents()" value="#FFFFFF">
-                    </li>
-                    <li class="list-group-item"><h3 class="options" style="font-family: 'Open Sans', sans-serif;font-size: 20px;">Select Lunch:</h3>
-<select class="options" id="lunchSelect" onchange="saveLunch()">
-        <option value="a" selected="">A</option>
-        <option value="c">C</option>
-</select></li>
 
-                    <li class="list-group-item"><a class="fab fa-github" href="https://github.com/ratsenior/lhscountdown" target="_blank" style="font-size: 15px;color: var(--bs-body-color);"> Github</a></li>
-                    <li class="list-group-item"><a class="fas fa-envelope-open" href="mailto:ra25226@student.lisle202.org" style="font-size: 15px;color: var(--bs-body-color);"> Email Issues</a></li>
-                </ul>
-            </div>
-            <div id="notepadSection" class="col-md-4 col-lg-9 col-xl-8 d-flex flex-column position-relative" align="center" style="overflow-y: scroll; overflow-x: hidden; width: 75%;height: 2px;padding-bottom: 35%;padding-right: 12px;">
-                <div id="notepads" class="scroll" style="height: 100%;">
-                    
-                    <div class="formfield">
-                    <label class="content" for="notepad0">1.</label>
-                    <textarea id="notepad0" rows="5" onchange="saveNotepad(0)"></textarea>
-                    </div>
+        <div id="notepads" class="mainshadow">
+            <div class="fa-regular fa-note-sticky icon content"></div>
+            <div> <textarea id="notepad0" onchange="saveNotepad(0)"></textarea> </div>
+            <div> <textarea id="notepad1" onchange="saveNotepad(1)"></textarea> </div>
+            <div> <textarea id="notepad2" onchange="saveNotepad(2)"></textarea> </div>
+            <div> <textarea id="notepad3" onchange="saveNotepad(3)"></textarea> </div>
+            <div> <textarea id="notepad4" onchange="saveNotepad(4)"></textarea> </div>
+            <div> <textarea id="notepad5" onchange="saveNotepad(5)"></textarea> </div>
+            <div> <textarea id="notepad6" onchange="saveNotepad(6)"></textarea> </div>
+            <div> <textarea id="notepad7" onchange="saveNotepad(7)"></textarea> </div>
 
-                    <div class="formfield">
-                    <label class="content" for="notepad1">2.</label>
-                    <textarea id="notepad1" rows="5" onchange="saveNotepad(1)"></textarea>
-                    </div>
+        
+        </div>
 
-                    <div class="formfield">
-                    <label class="content" for="notepad2">3.</label>
-                    <textarea id="notepad2" rows="5" onchange="saveNotepad(2)"></textarea>
-                    </div>
+        <div id="scheduleFrame" class="mainshadow">
+            <div class="fa-regular fa-calendar icon content"></div>
+            <table id="scheduleTable">
+                <tr>
+                    <th> <h2 class="content">Period</h2> </th>
+                    <th> <h2 class="content">Start Time </h2> </th>
+                    <th> <h2 class="content">End Time </h2> </th>
+                </tr>
 
-                    <div class="formfield">
-                    <label class="content" for="notepad3">4.</label>
-                    <textarea id="notepad3" rows="5" onchange="saveNotepad(3)"></textarea>
-                    </div>
+            </table>
+        </div>
 
-                    <div class="formfield">
-                    <label class="content" for="notepad4">5.</label>
-                    <textarea id="notepad4" rows="5" onchange="saveNotepad(4)"></textarea>
-                    </div>
-
-                    <div class="formfield">
-                    <label class="content" for="notepad5">6.</label>
-                    <textarea id="notepad5" rows="5" onchange="saveNotepad(5)"></textarea>
-                    </div>
-
-                    <div class="formfield" style="margin-bottom: 5%;">
-                    <label class="content" for="notepad6">7.</label>
-                    <textarea id="notepad6" rows="5" onchange="saveNotepad(6)"></textarea>
-                    </div>
-                    
+        <div id ="settings" class="mainshadow">
+            <div class="la la-gear content icon"></div>
+            <div id="colors" class="settingsdiv shadowed">
+                <h2 class="content">Colors</h2>
+                <div>
+                    <label class="content">Text</label>
+                    <input type="color" class="content settingsinput" id="textColorInput" name="text" onchange="inheritColorSelectionTxt()" value="#FFFFFF"></input>
                 </div>
+    
+                <div>
+                    <label class="content">Accents</label>
+                    <input type="color" class="content settingsinput" id="accentColorInput" name="accents" onchange="inheritColorSelectionAccents()" value="#FFFFFF"></input>
+                </div>
+    
+                <div>
+                    <label class="content">Background</label>
+                    <input type="color" class="content settingsinput" id="backgroundColorInput" name="Background" onchange="inheritColorSelectionBg()" value="#000000"></input>
+                </div>
+            
             </div>
+
+            <div id="lunch" class="settingsdiv">
+                <h2 class="content">Lunch</h2>
+                <select id="lunchSelect" onchange="saveLunch()">
+                    <option value="a" selected>A</option>
+                    <option value="c">C</option>
+                </select>
+            </div>
+
+            <div id="timeDelay" class="settingsdiv">
+                <h2 class="content">Time Delay (Seconds)</h2>
+                <input type="number" id="delayInput" placeholder="Click to adjust (seconds)" onchange="setDelay()">     
+            </div>
+
+            <div id="support" class="settingsdiv">
+                <h2 class="content">Support</h2>
+                <a class="content" href="https://github.com/ratsenior/lhscountdown"><h3> <div class="fab fa-github"></div> Github</h3> </a>
+                <a class="content" href="mailto:ra25226@student.lisle202.org"><h3> <div class="fas fa-envelope-open"></div> Email Support </h3> </a>
+
+            </div>
+
+
+
         </div>
+
+        <div id="tasks" class="mainshadow">
+            <div class="fa-solid fa-list-check icon content"></div>
+            <form id="todoForm">
+                <input type="button" id="todoSubmit" class="todoButton" onclick="newTask()" value="+">
+                <input type="text" id="todoInput" placeholder="Something to do...">
+            </form>
+            <ul id="todoList"></ul>
+        </div>
+
+
+
+
+
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/pageModules.js"></script>
+
+
+
 </body>
 
 </html>
