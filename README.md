@@ -1,6 +1,6 @@
 # LHS Countdown
 
-LHS Countdown is a web project using HTML, Bootstrap 5 library, Javascript, and CSS.
+LHS Countdown is a web project using HTML, Javascript, and CSS.
 
 
 ## Support
