@@ -526,7 +526,6 @@ function assignSchedule() {
             { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 56, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 22, 0, 0).getTime() }
         ];
     }
-    console.log(window.schedule)
     scheduleBuilder();
 }
 
@@ -598,10 +597,8 @@ function clearSchedule(){
 function scheduleBuilder(){
     clearSchedule();
     const schedule = window.schedule
-    console.log(schedule)
     const scheduleTable = document.getElementById("scheduleTable");
     for(let i = 0; i < schedule.length; i++ ){
-        console.log(schedule[i])
         const newRow = document.createElement("tr");
         newRow.className = "scheduleGen";
         const periodNumber = document.createElement("td");
