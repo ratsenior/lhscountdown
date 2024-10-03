@@ -619,7 +619,8 @@ function scheduleBuilder(){
         const periodStart = new Date(schedule[i].periodStart);
         let periodStartHour = periodStart.getHours();
         periodStartHour > 12 ? periodStartHour = periodStartHour-12 : periodStartHour = periodStartHour;
-        const periodStartMinutes = periodStart.getMinutes();
+        let periodStartMinutes = periodStart.getMinutes();
+        periodStartMinutes < 10 ? periodStartMinutes = `0${periodStartMinutes}` : periodStartMinutes = periodStartMinutes;
         periodStartText.innerHTML = `${periodStartHour}:${periodStartMinutes}`;
         startTime.appendChild(periodStartText);
 
@@ -628,7 +629,9 @@ function scheduleBuilder(){
         const periodEnd = new Date(schedule[i].periodEnd);
         let periodEndHour = periodEnd.getHours();
         periodEndHour > 12 ? periodEndHour = periodEndHour-12 : periodEndHour = periodEndHour;
-        const periodEndMinutes = periodEnd.getMinutes();
+        let periodEndMinutes = periodEnd.getMinutes();
+        periodEndMinutes < 10 ? periodEndMinutes = `0${periodEndMinutes}` : periodEndMinutes = periodEndMinutes;
+
         periodEndText.innerHTML = `${periodEndHour}:${periodEndMinutes}`
         endTime.appendChild(periodEndText);
         
