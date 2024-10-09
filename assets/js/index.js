@@ -363,7 +363,7 @@ function assignSchedule() {
     todayDate = now.getDate();
     todayYear = now.getFullYear();
     
-    const oneprideDates = ["7/28","8/11","8/18","9/16", "9/23", "9/30", "10/13", "10/20", "11/11"];
+    const oneprideDates = ["7/28","8/11","8/18", "9/9", "9/16", "9/23", "9/30", "10/13", "10/20", "11/11"];
     const plcDates = ["7/21", "8/4", "9/2", "9/10", "10/6", "11/4", "11/11"];
     const assemblyDates = ["8/25","8/27", "1/5", "2/22"];
     const fiveEssentialsDates = ["1/8"];
