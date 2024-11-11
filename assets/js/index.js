@@ -358,14 +358,15 @@ function countdown(){
 
 
 function assignSchedule() {
-    now = new Date();
-    todayMonth = now.getMonth();
-    todayDate = now.getDate();
-    todayYear = now.getFullYear();
+    let now = new Date();
+    let todayMonth = now.getMonth();
+    let todayDate = now.getDate();
+    let todayYear = now.getFullYear();
     
     const oneprideDates = ["7/28","8/11","8/18", "9/9", "9/16", "9/23", "9/30", "10/13", "10/20", "11/11"];
     const plcDates = ["7/21", "8/4", "9/2", "9/10", "10/6", "11/4", "11/11"];
     const assemblyDates = ["8/25","8/27", "1/5", "2/22"];
+    const vetAssemblyDate = ["10/11"];
     const fiveEssentialsDates = ["1/8"];
     const halfDays = ["8/13", "9/4", "1/14", "3/25"];
     let date = `${todayMonth}/${todayDate}`;
@@ -430,6 +431,21 @@ function assignSchedule() {
             ];
         }
 
+        else if (vetAssemblyDate.includes(date)) {
+            window.schedule = [
+                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
+                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 34, 0, 0).getTime() },
+                { period: "Assembly", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 40, 0 ,0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 8, 0,0).getTime()},
+                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 14, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 58, 0, 0).getTime() },
+                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 2, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime() },
+                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 34, 0, 0).getTime() },
+                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 38, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 3, 0, 0).getTime() },
+                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 7, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 1, 0, 0).getTime() },
+                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 49, 0, 0).getTime() },
+                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 53, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
+            ]
+        }
+
         else {
             window.schedule = [
                 { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
@@ -484,6 +500,20 @@ function assignSchedule() {
                 { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 13, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime() },
                 { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
             ];
+        }
+        else if (vetAssemblyDate.includes(date)) {
+            window.schedule = [
+                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
+                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 34, 0, 0).getTime() },
+                { period: "Assembly", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 40, 0 ,0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 8, 0,0).getTime()},
+                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 14, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 58, 0, 0).getTime() },
+                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 2, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime() },
+                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 34, 0, 0).getTime() },
+                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 38, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 32, 0, 0).getTime() },
+                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 36, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 1, 0, 0).getTime() },
+                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 49, 0, 0).getTime() },
+                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 53, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
+            ]
         }
         else if (fiveEssentialsDates.includes(date)) {
             window.schedule = [
