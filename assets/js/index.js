@@ -367,7 +367,7 @@ function assignSchedule() {
     const plcDates = ["1/5","2/5","3/2","4/7"];
     const assemblyDates = [];
     const vetAssemblyDate = [];
-    const fiveEssentialsDates = [];
+    const fiveEssentialsDates = ["2/4"];
     const halfDays = ["8/13", "9/4", "1/14", "3/25"];
     let date = `${todayMonth}/${todayDate}`;
 
@@ -518,8 +518,8 @@ function assignSchedule() {
         else if (fiveEssentialsDates.includes(date)) {
             window.schedule = [
                 { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 35, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 39, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 24, 0, 0).getTime() },
+                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 33, 0, 0).getTime() },
+                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 39, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 20, 0, 0).getTime() },
                 { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 28, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 13, 0, 0).getTime() },
                 { period: "Survey", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 15, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 43, 0, 0).getTime() },
                 { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 47, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 32, 0, 0).getTime() },
