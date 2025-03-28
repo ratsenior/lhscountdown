@@ -413,7 +413,7 @@ function assignSchedule() {
                 { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 11, 0, 0).getTime() },
                 { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 15, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 9, 0, 0).getTime() },
                 { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 13, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
+                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
             ];
         }
         else if (fiveEssentialsDates.includes(date)) {
@@ -498,7 +498,7 @@ function assignSchedule() {
                 { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 40, 0, 0).getTime() },
                 { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 44, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 9, 0, 0).getTime() },
                 { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 13, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
+                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
             ];
         }
         else if (vetAssemblyDate.includes(date)) {
