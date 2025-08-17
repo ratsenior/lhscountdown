@@ -1,685 +1,9 @@
-//-=-=-=-=-=-=-=-=-=-=-=- Time Setup & Page Title -=-=-=-=-=-=-=-=-=-=-=-
-
-function startTime() {
-    const delay = localStorage.getItem("timeDelay")
-    let today = new Date().getTime();
-
-    delay ? today = new Date(today + (1000*delay)) : today = new Date(today) 
-    let h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    h = tweleveHour(h);
-    m = checkTime(m);
-    s = checkTime(s);
-
-    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
-    setTimeout(startTime, 1000);
-}
-function checkTime(i){
-    if (i < 10) {i = "0"+ i };
-    return i;
-}
-function tweleveHour(h){
-    if (h > 12) {h = h-12};
-    return h
-}
-
-function setDate(){
-    const today = new Date();
-    const date = today.getDate();
-
-    const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    let weekday = weekdays[today.getDay()];
-
-    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    let month = months[today.getMonth()];
-
-    let dateString = `${weekday}, ${month} ${date}`
-
-    document.getElementById("date").innerHTML = dateString
-}
-
-
-//-=-=-=-=-=-=-=-=-=-=-=- Customization Functions: Background -=-=-=-=-=-=-=-=-=-=-=-
-function backgroundColorChange(){
-    if (!localStorage.getItem("bgColor")){
-        inheritColorSelectionBg();
-    }
-    else {
-        const color = localStorage.getItem("bgColor")
-        document.body.style.backgroundColor = color;
-        document.getElementById("backgroundColorInput").setAttribute("value",color);
-        document.getElementById("todoInput").style.backgroundColor = color;
-        document.getElementById("delayInput").style.backgroundColor = color;
-        const todoSubmitElements = document.getElementsByClassName("todoButton")
-        for (let i = 0; i < todoSubmitElements.length; i++){
-            todoSubmitElements[i].style.backgroundColor = color;
-        }
-        updateNotepads();
-    }
-}
-function inheritColorSelectionBg(){
-    const color = document.getElementById("backgroundColorInput").value
-    localStorage.setItem("bgColor", color);
-    document.body.style.backgroundColor = color;
-    document.getElementById("todoInput").style.backgroundColor = color;
-    document.getElementById("delayInput").style.backgroundColor = color;
-    document.getElementById("todoSubmit").style.backgroundColor = color;
-    updateNotepads();
-}
-
-//-=-=-=-=-=-=-=-=-=-=-=- Customization Functions: Text -=-=-=-=-=-=-=-=-=-=-=-
-function textColorChange(){
-    if (!localStorage.getItem("txtColor")){
-        inheritColorSelectionTxt();
-    }
-    else {
-        updateText();
-        document.getElementById("textColorInput").setAttribute("value",localStorage.getItem("txtColor"));
-        updateNotepads();
-    }
-}
-function inheritColorSelectionTxt(){
-    const color = document.getElementById("textColorInput").value
-    localStorage.setItem("txtColor", color);
-    updateText();
-}
-function updateText(){
-    color = localStorage.getItem("txtColor")
-    const textElements = document.getElementsByClassName("content");
-    for (let i = 0; i < textElements.length; i++){
-        textElements[i].style.color = color;
-    }
-    document.getElementById("todoInput").style.color = color;
-    document.getElementById("delayInput").style.color = color;
-    document.getElementById("todoSubmit").style.color = color;
-    
-}
-
-//-=-=-=-=-=-=-=-=-=-=-=- Customization Functions: Accents -=-=-=-=-=-=-=-=-=-=-=-
-
-function inheritColorSelectionAccents(){
-    let color = document.getElementById("accentColorInput").value
-    localStorage.setItem("accentColor", color);
-    document.getElementById("mainframe").style.color = color;
-    const mainshadow = document.getElementsByClassName("mainshadow");
-    for (let i= 0; i < mainshadow.length; i++){
-        mainshadow[i].style.boxShadow = `0px 0px 10px 0px ${color}`;
-    }
-    const settingsDivs = document.getElementsByClassName("settingsdiv")
-    for (let i= 0; i <settingsDivs.length; i++){
-        settingsDivs[i].style.boxShadow = `0px 0px 4px 1px ${color}`
-    }
-    document.getElementById("todoForm").style.boxShadow = `0px 0px 4px 1px ${color}`
-    document.getElementById("delayInput").style.borderColor = color;
-    document.getElementById("todoInput").style.borderColor = color;
-    const todoSubmitElements = document.getElementsByClassName("todoButton");
-    for (let i = 0; i < todoSubmitElements.length; i++){
-        todoSubmitElements[i].style.borderColor = color;
-    }
-    document.getElementById("scheduleTable").style.borderColor = color;
-    for (let tableData of document.getElementsByTagName("td")){
-        tableData.style.borderColor = color;
-    }
-    for (let tableHeader of document.getElementsByTagName("th")){
-        tableHeader.style.borderColor = color;
-    }
-
-    updateNotepads();
-}
-
-function accentsColorChange(){
-    if (!localStorage.getItem("accentColor")){
-        inheritColorSelectionAccents();
-    }
-    else {
-        const color = localStorage.getItem("accentColor")
-        document.getElementById("mainframe").style.color = color;
-        document.getElementById("accentColorInput").setAttribute("value",color);
-        const todoTextInput = document.getElementById("todoInput");
-        todoTextInput.style.borderColor = color;
-        document.getElementById("todoInput").style.backgroundColor = color;
-        document.getElementById("delayInput").style.backgroundColor = color;
-        const todoSubmitElements = document.getElementsByClassName("todoButton");
-        for (let i = 0; i < todoSubmitElements.length; i++){
-            todoSubmitElements[i].style.borderColor = color;
-        }
-        document.getElementById("scheduleTable").style.borderColor = color;
-        for (let tableData of document.getElementsByTagName("td")){
-            tableData.style.borderColor = color;
-        }
-        for (let tableHeader of document.getElementsByTagName("th")){
-            tableHeader.style.borderColor = color;
-        }
-
-        updateNotepads();
-    }
-}
-
-//-=-=-=-=-=-=-=-=-=-=-=- Favicon Settings -=-=-=-=-=-=-=-=-=-=-=-
-
-function faviconSelector(){
-    let today = new Date();
-    let date = String(today.getDate());
-    const favicon = document.getElementById("favicon");
-    favicon.setAttribute("href",`/assets/img/date_icons/${date}.png`);
-}
-
-
-//-=-=-=-=-=-=-=-=-=-=-=- Lunch Functions -=-=-=-=-=-=-=-=-=-=-=-
-
-function saveLunch(){
-    localStorage.setItem("lunchPeriod",document.getElementById("lunchSelect").value);
-    assignSchedule();
-    countdown();
-}
-function loadLunch(){
-    assignSchedule();
-    document.getElementById("lunchSelect").value = localStorage.getItem("lunchPeriod");
-}
-
-
-//-=-=-=-=-=-=-=-=-=-=-=- Todo List Functions -=-=-=-=-=-=-=-=-=-=-=-
-
-function createTaskElement(taskString){
-    const list = document.getElementById("todoList");
-    const listItem = document.createElement("li");
-    const listItemText = document.createElement("h4");
-    const listItemClose = document.createElement("button");
-    const backgroundColor = localStorage.getItem("bgColor");
-    const textColor = localStorage.getItem("txtColor");
-    const accentColor = localStorage.getItem("accentColor")
-    
-    listItemText.innerHTML = taskString;
-    listItemText.style.color = textColor;
-    listItemText.className = "content";
-
-    listItemClose.className = "close todoButton content";
-    listItemClose.textContent = "X";
-    listItemClose.style.color = textColor;
-    listItemClose.style.backgroundColor = backgroundColor;
-    listItemClose.style.borderColor = accentColor;
-    
-
-    listItemClose.onclick = function(){
-        parent = this.parentElement;
-        parent.remove();
-        taskList = JSON.parse(localStorage.getItem("todoTasks"));
-        const index = taskList.indexOf(listItemText);
-        taskList.splice(index, 1);
-        localStorage.setItem("todoTasks",JSON.stringify(taskList))
-    }
-
-    listItem.appendChild(listItemClose);
-    listItem.appendChild(listItemText);
-    list.appendChild(listItem);
-
-}
-
-function newTask(){
-    const task = document.getElementById("todoInput").value;
-    let taskList = localStorage.getItem("todoTasks");
-    if (taskList == null){
-        const newTasksArray = [task]
-        localStorage.setItem("todoTasks",JSON.stringify(newTasksArray))
-    }
-    else{
-        taskList = JSON.parse(taskList);
-        if(task.trim() == ""){
-            return false
-        }
-        taskList.push(task)
-        localStorage.setItem("todoTasks",JSON.stringify(taskList))
-    }
-    createTaskElement(task)
-}
-
-function loadTodoList(){
-    let taskList = localStorage.getItem("todoTasks");
-    if (taskList && taskList.length > 0){
-        taskList = JSON.parse(taskList)
-        for(let i=0; i < taskList.length; i++){
-            createTaskElement(taskList[i])
-        }
-    }
-}
-
-
-//-=-=-=-=-=-=-=-=-=-=-=- Notepad Settings -=-=-=-=-=-=-=-=-=-=-=-
-
-function updateNotepads(){
-    let notepads = document.getElementsByTagName("textarea");
-    for (let i = 0; i < notepads.length; i++){
-        notepads[i].style.background = localStorage.getItem("bgColor");
-        notepads[i].style.color = localStorage.getItem("accentColor");
-    }
-}
-function saveNotepad(notepadNumber){
-    localStorage.setItem(`notepadData${notepadNumber}`, document.getElementById(`notepad${notepadNumber}`).value);
-}
-function loadNotepads(){
-    for (let i = 0; i < 8; i++){
-        document.getElementById(`notepad${i}`).value = localStorage.getItem(`notepadData${i}`);
-    }
-}
-
-//-=-=-=-=-=-=-=-=-=-=-=- Countdown -=-=-=-=-=-=-=-=-=-=-=-
-
-function countdown(){
-    const now = new Date();
-    const todayDate = now.getDate(); //day as a numeric value ex. the 8th of x month
-    const todayYear = now.getFullYear();
-    const todayMonth = now.getMonth(); /* date format = year, month (0 = jan, 11 = dec), day (ex. 8th), hour, minute, second, millisecond*/
-
-    if (877 < (now.getHours()*60) + now.getMinutes()){
-        let tommrrowStart = new Date(todayYear,todayMonth,todayDate+1,6,55,0,0)
-        let [days, hours, minutes, seconds] = countTo(tommrrowStart);
-            if (minutes < 0 && seconds < 0){
-                clearInterval(countTo);
-            }
-            else{
-                hours = checkTime(hours);
-                minutes = checkTime(minutes);
-                seconds = checkTime(seconds);
-                document.getElementById('countdown').innerHTML = hours + ":"+ minutes + ":"+ seconds;
-                document.getElementById('pageTitle').innerHTML = "LHSCD | " + hours+":"+minutes+":"+seconds;
-                setTimeout(countdown, 1000);
-            }
-        }
-    else if((now.getHours()*60)+now.getMinutes() < 415){
-        let todayStart = new Date(todayYear,todayMonth,todayDate,6,55,0,0)
-        let [days, hours, minutes, seconds] = countTo(todayStart);
-            if (minutes < 0 && seconds < 0){
-                clearInterval(countTo);
-            }
-            else{
-                hours = checkTime(hours);
-                minutes = checkTime(minutes);
-                seconds = checkTime(seconds);
-                document.getElementById('countdown').innerHTML = hours + ":"+ minutes + ":"+ seconds;
-                document.getElementById('pageTitle').innerHTML = "LHSCD | " + hours+":"+minutes+":"+seconds;
-                setTimeout(countdown, 1000);
-            }
-        }
-
-    else if (new Date(schedule[Number(sessionStorage.getItem("period"))].periodEnd).getTime() < new Date(now).getTime() && new Date(now).getTime() < new Date(schedule[Number(sessionStorage.getItem("period")) + 1].periodStart).getTime()){
-        try{
-        let [days, hours, minutes, seconds] = countTo(schedule[Number(sessionStorage.getItem("period"))+1].periodStart);
-            hours = checkTime(hours);
-            minutes = checkTime(minutes);
-            seconds = checkTime(seconds);
-            document.getElementById('countdown').innerHTML = hours + ":"+ minutes + ":"+ seconds;
-            document.getElementById('pageTitle').innerHTML = "LHSCD | " + hours+":"+minutes+":"+seconds;
-            setTimeout(countdown, 1000);
-        } catch (error){
-            if (error instanceof RangeError) {
-                sessionStorage.setItem("period", Number((Number(period))+1))
-                setTimeout(countdown, 0);
-            }
-            else if (error instanceof ReferenceError){
-                isWithinPeriod(schedule[0].periodStart,schedule[0].periodEnd,0);
-            } 
-            else if (error instanceof TypeError){
-                location.reload();
-                }
-            else {
-                throw error;
-            }
-
-        }
-    }
-    else{
-        let period = sessionStorage.getItem("period")
-        try {
-            let [days, hours, minutes, seconds] = countTo(schedule[sessionStorage.getItem("period")].periodEnd);
-            hours = checkTime(hours);
-            minutes = checkTime(minutes);
-            seconds = checkTime(seconds);
-            document.getElementById('countdown').innerHTML = hours + ":"+ minutes + ":"+ seconds;
-            document.getElementById('pageTitle').innerHTML = "LHSCD | " + hours+":"+minutes+":"+seconds;
-            setTimeout(countdown, 1000);
-        } catch (error) {
-            if (error instanceof RangeError) {
-                sessionStorage.setItem("period", Number((Number(period))+1));
-                setTimeout(countdown, 0);
-            }
-            else if (error instanceof ReferenceError){
-                isWithinPeriod(schedule[0].periodStart,schedule[0].periodEnd,0);
-            } 
-            else if (error instanceof TypeError){
-                location.reload();
-                }
-            else {
-                throw error;
-            }
-        }
-      }
-}
-
-
-function assignSchedule() {
-    let now = new Date();
-    let todayMonth = now.getMonth();
-    let todayDate = now.getDate();
-    let todayYear = now.getFullYear();
-    
-    const oneprideDates = ["7/27","8/10","8/17","8/24","9/8","9/15","9/22","9/29","10/12","10/19","11/10","4/21"];
-    const plcDates = ["7/20","8/3","9/1","10/5","11/3",];
-    const assemblyDates = ["2/28"];
-    const vetAssemblyDate = [];
-    const fiveEssentialsDates = ["2/4"];
-    const halfDays = ["8/13", "9/4", "1/14", "3/25"];
-    let date = `${todayMonth}/${todayDate}`;
-
-    let lunchPeriod = ""
-
-    localStorage.getItem("lunchPeriod") ? lunchPeriod = localStorage.getItem("lunchPeriod") : lunchPeriod = "a"
-
-    if (lunchPeriod == "a") {
-        if (oneprideDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 31, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 35, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 16, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 20, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 1, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime() },
-                { period: "OnePride", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 40, 0, 0).getTime() },
-                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 44, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 11, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 15, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 7, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 11, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 52, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 56, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ];
-        }
-        else if (plcDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 33, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 37, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 20, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 24, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 7, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 11, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 54, 0, 0).getTime() },
-                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 58, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 23, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 27, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 21, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 25, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 8, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 12, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 55, 0, 0).getTime() }
-            ];
-        }
-        else if (assemblyDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 30, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 34, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 14, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 18, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 58, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 2, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 42, 0, 0).getTime() },
-                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 11, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 15, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 9, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 13, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
-            ];
-        }
-        else if (fiveEssentialsDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 35, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 39, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 24, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 28, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 13, 0, 0).getTime() },
-                { period: "Survey", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 15, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 43, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 47, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 32, 0, 0).getTime() },
-                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 36, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 1, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 59, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 3, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 48, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 52, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ];
-        }
-
-        else if (vetAssemblyDate.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 34, 0, 0).getTime() },
-                { period: "Assembly", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 40, 0 ,0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 8, 0,0).getTime()},
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 14, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 58, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 2, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 34, 0, 0).getTime() },
-                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 38, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 3, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 7, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 1, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 49, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 53, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ]
-        }
-
-        else {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 40, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 44, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 34, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 38, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 28, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 32, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 22, 0, 0).getTime() },
-                { period: "A", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 26, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 51, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 49, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 43, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 47, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ];
-        }
-    }
-    else if (lunchPeriod == "c") {
-        if (oneprideDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 31, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 35, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 16, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 20, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 1, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime() },
-                { period: "OnePride", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 40, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 44, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 36, 0, 0).getTime() },
-                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 40, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 7, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 11, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 52, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 56, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ];
-        }
-        else if (plcDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 33, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 37, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 20, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 24, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 7, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 11, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 54, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 58, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 52, 0, 0).getTime() },
-                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 56, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 21, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 25, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 8, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 12, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 55, 0, 0).getTime() }
-            ];
-        }
-        else if (assemblyDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 30, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 34, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 14, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 18, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 58, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 2, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 42, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 40, 0, 0).getTime() },
-                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 44, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 9, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 13, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 57, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 37, 0, 0).getTime() }
-            ];
-        }
-        else if (vetAssemblyDate.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 34, 0, 0).getTime() },
-                { period: "Assembly", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 40, 0 ,0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 8, 0,0).getTime()},
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 14, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 58, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 2, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 46, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 34, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 38, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 32, 0, 0).getTime() },
-                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 36, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 1, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 5, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 49, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 53, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ]
-        }
-        else if (fiveEssentialsDates.includes(date)) {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 33, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 39, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 20, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 28, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 13, 0, 0).getTime() },
-                { period: "Survey", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 15, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 43, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 47, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 32, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 36, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 30, 0, 0).getTime() },
-                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 34, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 59, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 3, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 48, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 52, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ];
-        }
-        else {
-            window.schedule = [
-                { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-                { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 40, 0, 0).getTime() },
-                { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 44, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 34, 0, 0).getTime() },
-                { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 38, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 28, 0, 0).getTime() },
-                { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 32, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 22, 0, 0).getTime() },
-                { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 11, 26, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 20, 0, 0).getTime() },
-                { period: "C", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 24, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 12, 49, 0, 0).getTime() },
-                { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 12, 53, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 13, 43, 0, 0).getTime() },
-                { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 13, 47, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 14, 37, 0, 0).getTime() }
-            ];
-        }
-    }
-
-    if (halfDays.includes(date)) {
-        window.schedule = [
-            { period: "0", periodStart: new Date(todayYear, todayMonth, todayDate, 6, 55, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 7, 45, 0, 0).getTime() },
-            { period: "1", periodStart: new Date(todayYear, todayMonth, todayDate, 7, 50, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 17, 0, 0).getTime() },
-            { period: "2", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 21, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 8, 48, 0, 0).getTime() },
-            { period: "3", periodStart: new Date(todayYear, todayMonth, todayDate, 8, 52, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 19, 0, 0).getTime() },
-            { period: "4", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 23, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 9, 50, 0, 0).getTime() },
-            { period: "5", periodStart: new Date(todayYear, todayMonth, todayDate, 9, 54, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 21, 0, 0).getTime() },
-            { period: "6", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 25, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 10, 52, 0, 0).getTime() },
-            { period: "7", periodStart: new Date(todayYear, todayMonth, todayDate, 10, 56, 0, 0).getTime(), periodEnd: new Date(todayYear, todayMonth, todayDate, 11, 22, 0, 0).getTime() }
-        ];
-    }
-    scheduleBuilder();
-}
-
-function isWithinPeriod(startTime,endTime, periodNumber){
-
-    dateStartTime = new Date(startTime).getTime();
-    dateEndTime = new Date(endTime).getTime();
-    now = new Date();
-    if(dateStartTime < now && dateEndTime > now){
-        sessionStorage.setItem("period",Number(periodNumber));
-        return
-    }
-    else{
-        sessionStorage.setItem("period",Number(periodNumber+1));
-        return;
-    }
-
-}
-
-function setDelay(){
-    const delay = document.getElementById("delayInput").value;
-    localStorage.setItem("timerDelay",delay);
-    countdown();
-    startTime();
-}
-
-function loadDelay(){
-    const delay = localStorage.getItem("timerDelay");
-    if (delay){
-        document.getElementById("delayInput").value = delay;
-    }
-    countdown();
-    startTime();
-}
-
-function countTo(timeObject) {
-    let endTime = new Date(timeObject).getTime();
-    let now = new Date().getTime();
-    let timeleft = endTime - now;
-
-    delay = localStorage.getItem("timerDelay")
-    delay ? timeleft = timeleft + (delay*1000) : timeleft 
-
-    if (timeleft < 0) {
-        throw new RangeError("Time has already passed");
-    }
-
-    let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-    return [days, hours, minutes, seconds];
-}
-
-//-=-=-=-=-=-=-=-=-=-=-=- Schedule Builder -=-=-=-=-=-=-=-=-=-=-=-
-
-function clearSchedule(){
-    const scheduleGeneratedContent = document.getElementsByClassName("scheduleGen");
-    while (scheduleGeneratedContent.length > 0){
-        for(let i = 0; i < scheduleGeneratedContent.length; i++){
-            scheduleGeneratedContent[i].remove()
-        }
-        i = 0;
-    }
-}
-
-
-function scheduleBuilder(){
-    clearSchedule();
-    const schedule = window.schedule
-    const scheduleTable = document.getElementById("scheduleTable");
-    for(let i = 0; i < schedule.length; i++ ){
-        const newRow = document.createElement("tr");
-        newRow.className = "scheduleGen";
-        const periodNumber = document.createElement("td");
-        const startTime = document.createElement("td");
-        const endTime = document.createElement("td");
-
-        newRow.appendChild(periodNumber);
-        newRow.appendChild(startTime);
-        newRow.appendChild(endTime);
-
-        const periodNumberText = document.createElement("h2");
-        periodNumberText.className = "content";
-        periodNumberText.innerHTML = schedule[i].period;
-        periodNumber.appendChild(periodNumberText);
-
-        const periodStartText = document.createElement("h2");
-        periodStartText.className = "content";
-        const periodStart = new Date(schedule[i].periodStart);
-        let periodStartHour = periodStart.getHours();
-        periodStartHour > 12 ? periodStartHour = periodStartHour-12 : periodStartHour = periodStartHour;
-        let periodStartMinutes = periodStart.getMinutes();
-        periodStartMinutes < 10 ? periodStartMinutes = `0${periodStartMinutes}` : periodStartMinutes = periodStartMinutes;
-        periodStartText.innerHTML = `${periodStartHour}:${periodStartMinutes}`;
-        startTime.appendChild(periodStartText);
-
-        const periodEndText = document.createElement("h2");
-        periodEndText.className = "content";
-        const periodEnd = new Date(schedule[i].periodEnd);
-        let periodEndHour = periodEnd.getHours();
-        periodEndHour > 12 ? periodEndHour = periodEndHour-12 : periodEndHour = periodEndHour;
-        let periodEndMinutes = periodEnd.getMinutes();
-        periodEndMinutes < 10 ? periodEndMinutes = `0${periodEndMinutes}` : periodEndMinutes = periodEndMinutes;
-
-        periodEndText.innerHTML = `${periodEndHour}:${periodEndMinutes}`
-        endTime.appendChild(periodEndText);
-        
-        scheduleTable.appendChild(newRow);
-
-    };
-}
-
-
-
-
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-
-
-//-=-=-=-=-=-=-=-=-=-=-=- Initalize Function -=-=-=-=-=-=-=-=-=-=-=-
-function initalize(){
-    sessionStorage.setItem("period",0);
+// Global variables
+let periodEndHour, periodEndMinutes;
+
+// Initialize the application
+function initalize() {
+    sessionStorage.setItem("period", 0);
     setDate();
     loadLunch();
     assignSchedule();
@@ -691,8 +15,465 @@ function initalize(){
     accentsColorChange();
     backgroundColorChange();
     
+    // Add modern enhancements
+    initializeModernFeatures();
 }
 
-//Should not be deleted unless better solution is found. If this is deleted the whole website no work :(
-//The function is called in index.html in the body tag.
+// Modern enhancements
+function initializeModernFeatures() {
+    // Add smooth scrolling
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Add intersection observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all main cards
+    document.querySelectorAll('#mainframe > div').forEach(card => {
+        observer.observe(card);
+    });
+}
 
+// Date and time functions
+function setDate() {
+    const now = new Date();
+    const timeElement = document.getElementById("time");
+    const dateElement = document.getElementById("date");
+    
+    if (timeElement && dateElement) {
+        const timeString = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        
+        const dateString = now.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        timeElement.innerHTML = timeString;
+        dateElement.innerHTML = dateString;
+    }
+    
+    setTimeout(setDate, 1000);
+}
+
+// Notepad functions
+function saveNotepad(notepadNumber) {
+    const notepadContent = document.getElementById(`notepad${notepadNumber}`).value;
+    localStorage.setItem(`notepad${notepadNumber}`, notepadContent);
+    
+    // Add save animation
+    const notepad = document.getElementById(`notepad${notepadNumber}`);
+    notepad.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+        notepad.style.transform = 'scale(1)';
+    }, 150);
+}
+
+function loadNotepads() {
+    for (let i = 0; i <= 7; i++) {
+        const savedContent = localStorage.getItem(`notepad${i}`);
+        const notepadElement = document.getElementById(`notepad${i}`);
+        if (savedContent && notepadElement) {
+            notepadElement.value = savedContent;
+        }
+    }
+}
+
+// Color functions
+function textColorChange() {
+    const savedColor = localStorage.getItem("textColor");
+    if (savedColor) {
+        document.getElementById("textColorInput").value = savedColor;
+        inheritColorSelectionTxt();
+    }
+}
+
+function inheritColorSelectionTxt() {
+    const colorValue = document.getElementById("textColorInput").value;
+    const contentElements = document.querySelectorAll(".content");
+    contentElements.forEach(element => {
+        element.style.color = colorValue;
+    });
+    localStorage.setItem("textColor", colorValue);
+}
+
+function accentsColorChange() {
+    const savedColor = localStorage.getItem("accentColor");
+    if (savedColor) {
+        document.getElementById("accentColorInput").value = savedColor;
+        inheritColorSelectionAccents();
+    }
+}
+
+function inheritColorSelectionAccents() {
+    const colorValue = document.getElementById("accentColorInput").value;
+    const elements = document.querySelectorAll(".mainshadow, .settingsdiv");
+    elements.forEach(element => {
+        element.style.borderColor = colorValue;
+        element.style.boxShadow = `0 20px 25px -5px ${colorValue}20, 0 10px 10px -5px ${colorValue}10`;
+    });
+    localStorage.setItem("accentColor", colorValue);
+}
+
+function backgroundColorChange() {
+    const savedColor = localStorage.getItem("backgroundColor");
+    if (savedColor) {
+        document.getElementById("backgroundColorInput").value = savedColor;
+        inheritColorSelectionBackground();
+    }
+}
+
+function inheritColorSelectionBackground() {
+    const colorValue = document.getElementById("backgroundColorInput").value;
+    document.body.style.background = `linear-gradient(135deg, ${colorValue} 0%, #764ba2 100%)`;
+    localStorage.setItem("backgroundColor", colorValue);
+}
+
+// Theme functions
+function assignIconToLocalStorage(iconId, value) {
+    localStorage.setItem("selectedIcon", iconId);
+    localStorage.setItem("iconValue", value);
+    
+    // Add click animation
+    const icon = document.getElementById(iconId);
+    icon.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+        icon.style.transform = 'scale(1)';
+    }, 150);
+    
+    if (value === 'light' || value === 'dark') {
+        applyTheme(value);
+    }
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-bs-theme', theme);
+    
+    if (theme === 'dark') {
+        document.documentElement.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.2)');
+        document.documentElement.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.1)');
+    } else {
+        document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.1)');
+        document.documentElement.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.2)');
+    }
+}
+
+function faviconSelector() {
+    const savedIcon = localStorage.getItem("selectedIcon");
+    if (savedIcon) {
+        const iconElement = document.getElementById(savedIcon);
+        if (iconElement) {
+            iconElement.style.opacity = "1";
+            iconElement.style.transform = "scale(1.1)";
+        }
+    }
+}
+
+// Schedule functions
+function loadLunch() {
+    const savedLunch = localStorage.getItem("iconValue");
+    if (savedLunch) {
+        sessionStorage.setItem("lunch", savedLunch);
+    }
+}
+
+function assignSchedule() {
+    const scheduleSelector = document.getElementById("scheduleSelector");
+    const selectedSchedule = scheduleSelector ? scheduleSelector.value : "fullSchedule";
+    
+    clearScheduleTable();
+    
+    const schedules = {
+        fullSchedule: [
+            { period: "1st", start: "8:15", end: "9:05" },
+            { period: "2nd", start: "9:10", end: "10:00" },
+            { period: "3rd", start: "10:05", end: "10:55" },
+            { period: "4th", start: "11:00", end: "11:50" },
+            { period: "Lunch A", start: "11:50", end: "12:20" },
+            { period: "5th", start: "12:25", end: "1:15" },
+            { period: "Lunch B", start: "1:15", end: "1:45" },
+            { period: "6th", start: "1:50", end: "2:40" },
+            { period: "7th", start: "2:45", end: "3:35" }
+        ],
+        fridaySchedule: [
+            { period: "1st", start: "8:15", end: "8:55" },
+            { period: "2nd", start: "9:00", end: "9:40" },
+            { period: "3rd", start: "9:45", end: "10:25" },
+            { period: "4th", start: "10:30", end: "11:10" },
+            { period: "Lunch A", start: "11:10", end: "11:40" },
+            { period: "5th", start: "11:45", end: "12:25" },
+            { period: "Lunch B", start: "12:25", end: "12:55" },
+            { period: "6th", start: "1:00", end: "1:40" },
+            { period: "7th", start: "1:45", end: "2:25" }
+        ],
+        zeroHour: [
+            { period: "0th", start: "7:25", end: "8:10" },
+            { period: "1st", start: "8:15", end: "9:05" },
+            { period: "2nd", start: "9:10", end: "10:00" },
+            { period: "3rd", start: "10:05", end: "10:55" },
+            { period: "4th", start: "11:00", end: "11:50" },
+            { period: "Lunch A", start: "11:50", end: "12:20" },
+            { period: "5th", start: "12:25", end: "1:15" },
+            { period: "Lunch B", start: "1:15", end: "1:45" },
+            { period: "6th", start: "1:50", end: "2:40" },
+            { period: "7th", start: "2:45", end: "3:35" }
+        ],
+        mondaySchedule: [
+            { period: "1st", start: "8:15", end: "9:05" },
+            { period: "2nd", start: "9:10", end: "10:00" },
+            { period: "3rd", start: "10:05", end: "10:55" },
+            { period: "4th", start: "11:00", end: "11:50" },
+            { period: "Lunch", start: "11:50", end: "12:35" },
+            { period: "5th", start: "12:40", end: "1:30" },
+            { period: "6th", start: "1:35", end: "2:25" },
+            { period: "7th", start: "2:30", end: "3:20" }
+        ],
+        tuesdaySchedule: [
+            { period: "1st", start: "8:15", end: "9:35" },
+            { period: "3rd", start: "9:40", end: "11:00" },
+            { period: "Lunch", start: "11:00", end: "11:45" },
+            { period: "5th", start: "11:50", end: "1:10" },
+            { period: "7th", start: "1:15", end: "2:35" }
+        ],
+        wednesdaySchedule: [
+            { period: "2nd", start: "8:15", end: "9:35" },
+            { period: "4th", start: "9:40", end: "11:00" },
+            { period: "Lunch", start: "11:00", end: "11:45" },
+            { period: "6th", start: "11:50", end: "1:10" },
+            { period: "Advisory", start: "1:15", end: "2:35" }
+        ],
+        thursdaySchedule: [
+            { period: "1st", start: "8:15", end: "9:35" },
+            { period: "3rd", start: "9:40", end: "11:00" },
+            { period: "Lunch", start: "11:00", end: "11:45" },
+            { period: "5th", start: "11:50", end: "1:10" },
+            { period: "7th", start: "1:15", end: "2:35" }
+        ]
+    };
+    
+    const schedule = schedules[selectedSchedule] || schedules.fullSchedule;
+    populateScheduleTable(schedule);
+}
+
+function clearScheduleTable() {
+    const scheduleTable = document.getElementById("scheduleTable");
+    if (scheduleTable) {
+        // Keep the header row, remove others
+        while (scheduleTable.rows.length > 1) {
+            scheduleTable.deleteRow(1);
+        }
+    }
+}
+
+function populateScheduleTable(schedule) {
+    const scheduleTable = document.getElementById("scheduleTable");
+    if (!scheduleTable) return;
+    
+    schedule.forEach((period, index) => {
+        const newRow = scheduleTable.insertRow();
+        newRow.style.animationDelay = `${index * 0.1}s`;
+        newRow.classList.add('schedule-row');
+        
+        const periodCell = newRow.insertCell(0);
+        const startCell = newRow.insertCell(1);
+        const endCell = newRow.insertCell(2);
+        
+        periodCell.innerHTML = `<span class="content">${period.period}</span>`;
+        startCell.innerHTML = `<span class="content">${period.start}</span>`;
+        endCell.innerHTML = `<span class="content">${period.end}</span>`;
+        
+        // Add hover effect
+        newRow.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        
+        newRow.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+}
+
+// Delay functions
+function loadDelay() {
+    const savedDelay = localStorage.getItem("delayValue");
+    const delayInput = document.getElementById("delayInput");
+    if (savedDelay && delayInput) {
+        delayInput.value = savedDelay;
+    }
+}
+
+function addDelay() {
+    const delayInput = document.getElementById("delayInput");
+    if (delayInput) {
+        const delayValue = delayInput.value;
+        localStorage.setItem("delayValue", delayValue);
+        
+        // Add visual feedback
+        delayInput.style.borderColor = "rgba(34, 197, 94, 0.5)";
+        setTimeout(() => {
+            delayInput.style.borderColor = "rgba(255, 255, 255, 0.2)";
+        }, 1000);
+    }
+}
+
+// Todo list functions
+function loadTodoList() {
+    const savedTodos = localStorage.getItem("todoList");
+    if (savedTodos) {
+        const todos = JSON.parse(savedTodos);
+        const todoList = document.getElementById("todoList");
+        if (todoList) {
+            todoList.innerHTML = "";
+            todos.forEach((todo, index) => {
+                createTodoElement(todo, index);
+            });
+        }
+    }
+}
+
+function addTodoItem() {
+    const todoInput = document.getElementById("todoInput");
+    if (!todoInput || !todoInput.value.trim()) return;
+    
+    const todoText = todoInput.value.trim();
+    const savedTodos = localStorage.getItem("todoList");
+    const todos = savedTodos ? JSON.parse(savedTodos) : [];
+    
+    todos.push(todoText);
+    localStorage.setItem("todoList", JSON.stringify(todos));
+    
+    createTodoElement(todoText, todos.length - 1);
+    todoInput.value = "";
+    
+    // Add success animation
+    todoInput.style.borderColor = "rgba(34, 197, 94, 0.5)";
+    setTimeout(() => {
+        todoInput.style.borderColor = "rgba(255, 255, 255, 0.2)";
+    }, 1000);
+}
+
+function createTodoElement(todoText, index) {
+    const todoList = document.getElementById("todoList");
+    if (!todoList) return;
+    
+    const todoItem = document.createElement("div");
+    todoItem.className = "todo-item";
+    todoItem.innerHTML = `
+        <span class="todo-text">${todoText}</span>
+        <button class="todo-delete" onclick="deleteTodoItem(${index})">×</button>
+    `;
+    
+    todoList.appendChild(todoItem);
+}
+
+function deleteTodoItem(index) {
+    const savedTodos = localStorage.getItem("todoList");
+    if (!savedTodos) return;
+    
+    const todos = JSON.parse(savedTodos);
+    todos.splice(index, 1);
+    localStorage.setItem("todoList", JSON.stringify(todos));
+    
+    // Reload the todo list
+    loadTodoList();
+}
+
+// Add todo item on Enter key press
+document.addEventListener('DOMContentLoaded', function() {
+    const todoInput = document.getElementById("todoInput");
+    if (todoInput) {
+        todoInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodoItem();
+            }
+        });
+    }
+});
+
+// Countdown timer function (enhanced)
+function updateCountdown() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentSecond = now.getSeconds();
+    
+    // Find current period
+    let currentPeriod = "After School";
+    let nextPeriodStart = null;
+    
+    // This would need to be enhanced based on your schedule logic
+    // For now, just update the countdown display
+    const countdownElement = document.getElementById("countdown");
+    if (countdownElement) {
+        countdownElement.innerHTML = `Current: ${currentPeriod}`;
+    }
+}
+
+// Enhanced initialization
+function enhancedInitialize() {
+    // Call original initialize
+    initalize();
+    
+    // Add modern enhancements
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + S to save all notepads
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            for (let i = 0; i <= 7; i++) {
+                saveNotepad(i);
+            }
+            
+            // Show save feedback
+            const header = document.getElementById("header");
+            if (header) {
+                header.style.transform = "scale(1.02)";
+                setTimeout(() => {
+                    header.style.transform = "scale(1)";
+                }, 200);
+            }
+        }
+    });
+}
+
+// Replace the original initialize call
+if (typeof window !== 'undefined') {
+    window.addEventListener('load', enhancedInitialize);
+}
+
+// Export functions for compatibility
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initalize,
+        setDate,
+        saveNotepad,
+        loadNotepads,
+        inheritColorSelectionTxt,
+        inheritColorSelectionAccents,
+        inheritColorSelectionBackground,
+        assignIconToLocalStorage,
+        assignSchedule,
+        addDelay,
+        addTodoItem,
+        deleteTodoItem
+    };
+}
