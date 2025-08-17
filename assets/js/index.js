@@ -363,8 +363,8 @@ function assignSchedule() {
     let todayDate = now.getDate();
     let todayYear = now.getFullYear();
     
-    const oneprideDates = ["0/22","0/29","1/19","1/26","2/12","2/19","2/26","3/16","3/23","3/30","4/14","4/21"];
-    const plcDates = ["1/5","2/5","3/9","4/7"];
+    const oneprideDates = ["7/27","8/10","8/17","8/24","9/8","9/15","9/22","9/29","10/12","10/19","11/10","4/21"];
+    const plcDates = ["7/20","8/3","9/1","10/5","11/3",];
     const assemblyDates = ["2/28"];
     const vetAssemblyDate = [];
     const fiveEssentialsDates = ["2/4"];
@@ -695,3 +695,4 @@ function initalize(){
 
 //Should not be deleted unless better solution is found. If this is deleted the whole website no work :(
 //The function is called in index.html in the body tag.
+
