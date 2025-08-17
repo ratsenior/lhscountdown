@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/index.js"></script>
@@ -12,95 +12,102 @@
     <script src="https://kit.fontawesome.com/fd1edd356e.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="font-family: 'Inter', sans-serif; width: 100%;" onload="initalize()">
+<body style="font-family: 'Open Sans', sans-serif;width: 100%;" onload="initalize()">
     <div id="mainframe">
-        <div id="header" class="mainshadow glass-card">
-            <h1 id="countdown" class="content gradient-text">Countdown</h1>
+        <div id="header" class="mainshadow">
+            <h1 id="countdown" class="content">Countdown</h1>
             <h2 id="time" class="content">Clock</h2>
             <h2 id="date" class="content">Date</h2>
         </div>
 
-        <div id="notepads" class="mainshadow glass-card">
+        <div id="notepads" class="mainshadow">
             <div class="fa-regular fa-note-sticky icon content"></div>
-            <div> <textarea id="notepad0" onchange="saveNotepad(0)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad1" onchange="saveNotepad(1)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad2" onchange="saveNotepad(2)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad3" onchange="saveNotepad(3)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad4" onchange="saveNotepad(4)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad5" onchange="saveNotepad(5)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad6" onchange="saveNotepad(6)" class="modern-textarea"></textarea> </div>
-            <div> <textarea id="notepad7" onchange="saveNotepad(7)" class="modern-textarea"></textarea> </div>
+            <div> <textarea id="notepad0" onchange="saveNotepad(0)"></textarea> </div>
+            <div> <textarea id="notepad1" onchange="saveNotepad(1)"></textarea> </div>
+            <div> <textarea id="notepad2" onchange="saveNotepad(2)"></textarea> </div>
+            <div> <textarea id="notepad3" onchange="saveNotepad(3)"></textarea> </div>
+            <div> <textarea id="notepad4" onchange="saveNotepad(4)"></textarea> </div>
+            <div> <textarea id="notepad5" onchange="saveNotepad(5)"></textarea> </div>
+            <div> <textarea id="notepad6" onchange="saveNotepad(6)"></textarea> </div>
+            <div> <textarea id="notepad7" onchange="saveNotepad(7)"></textarea> </div>
+
+        
         </div>
 
-        <div id="scheduleFrame" class="mainshadow glass-card">
+        <div id="scheduleFrame" class="mainshadow">
             <div class="fa-regular fa-calendar icon content"></div>
-            <table id="scheduleTable" class="modern-table">
+            <table id="scheduleTable">
                 <tr>
                     <th> <h2 class="content">Period</h2> </th>
-                    <th> <h2 class="content">Start Time</h2> </th>
-                    <th> <h2 class="content">End Time</h2> </th>
+                    <th> <h2 class="content">Start Time </h2> </th>
+                    <th> <h2 class="content">End Time </h2> </th>
                 </tr>
+
             </table>
         </div>
 
-        <div id="settings" class="mainshadow glass-card">
+        <div id ="settings" class="mainshadow">
             <div class="la la-gear content icon"></div>
-            <div id="colors" class="settingsdiv modern-settings-card">
+            <div id="colors" class="settingsdiv shadowed">
                 <h2 class="content">Colors</h2>
-                <div class="color-input-group">
+                <div>
                     <label class="content">Text</label>
-                    <input type="color" class="content settingsinput modern-color-input" id="textColorInput" name="text" onchange="inheritColorSelectionTxt()" value="#FFFFFF">
+                    <input type="color" class="content settingsinput" id="textColorInput" name="text" onchange="inheritColorSelectionTxt()" value="#FFFFFF"></input>
                 </div>
     
-                <div class="color-input-group">
+                <div>
                     <label class="content">Accents</label>
-                    <input type="color" class="content settingsinput modern-color-input" id="accentColorInput" name="accents" onchange="inheritColorSelectionAccents()" value="#FFFFFF">
+                    <input type="color" class="content settingsinput" id="accentColorInput" name="accents" onchange="inheritColorSelectionAccents()" value="#FFFFFF"></input>
                 </div>
     
-                <div class="color-input-group">
+                <div>
                     <label class="content">Background</label>
-                    <input type="color" class="content settingsinput modern-color-input" id="backgroundColorInput" name="background" onchange="inheritColorSelectionBackground()" value="#764ba2">
+                    <input type="color" class="content settingsinput" id="backgroundColorInput" name="Background" onchange="inheritColorSelectionBg()" value="#000000"></input>
                 </div>
+            
             </div>
 
-            <div id="theme" class="settingsdiv modern-settings-card">
-                <h2 class="content">Theme</h2>
-                <div class="fa-regular fa-sun icon content iconSelector" id="lightMode" onclick="assignIconToLocalStorage('lightMode', 'light')"></div>
-                <div class="fa-regular fa-moon icon content iconSelector" id="darkMode" onclick="assignIconToLocalStorage('darkMode', 'dark')"></div>
-            </div>
-
-            <div id="schedule" class="settingsdiv modern-settings-card">
-                <h2 class="content">Schedule</h2>
-                <select id="scheduleSelector" onchange="assignSchedule()" class="modern-select">
-                    <option value="fullSchedule">Regular Schedule</option>
-                    <option value="fridaySchedule">Friday Schedule</option>
-                    <option value="zeroHour">Zero Hour</option>
-                    <option value="mondaySchedule">Monday Schedule</option>
-                    <option value="tuesdaySchedule">Tuesday Schedule</option>
-                    <option value="wednesdaySchedule">Wednesday Schedule</option>
-                    <option value="thursdaySchedule">Thursday Schedule</option>
+            <div id="lunch" class="settingsdiv">
+                <h2 class="content">Lunch</h2>
+                <select id="lunchSelect" onchange="saveLunch()">
+                    <option value="a" selected>A</option>
+                    <option value="c">C</option>
                 </select>
-
-                <div class="fa-regular fa-user icon content iconSelector" id="aLunch" onclick="assignIconToLocalStorage('aLunch', 'a')"></div>
-                <div class="fa-regular fa-user icon content iconSelector" id="bLunch" onclick="assignIconToLocalStorage('bLunch', 'b')"></div>
             </div>
 
-            <div id="delay" class="settingsdiv modern-settings-card">
-                <h2 class="content">Delay</h2>
-                <input type="text" placeholder="ex. 10, 15, 20" id="delayInput" onchange="addDelay()" class="modern-input">
+            <div id="timeDelay" class="settingsdiv">
+                <h2 class="content">Time Delay (Seconds)</h2>
+                <input type="number" id="delayInput" placeholder="Click to adjust (seconds)" onchange="setDelay()">     
             </div>
 
-            <div id="todoFrame" class="settingsdiv modern-settings-card">
-                <h2 class="content">To-Do</h2>
-                <div id="todoList"></div>
-                <input type="text" id="todoInput" placeholder="Add new task..." class="modern-input">
-                <button onclick="addTodoItem()" class="modern-btn">Add</button>
+            <div id="support" class="settingsdiv">
+                <h2 class="content">Support</h2>
+                <a class="content" href="https://github.com/ratsenior/lhscountdown"><h3> <div class="fab fa-github"></div> Github</h3> </a>
+                <a class="content" href="mailto:ra25226@student.lisle202.org"><h3> <div class="fas fa-envelope-open"></div> Email Support </h3> </a>
+
             </div>
 
-            <div id="support" class="settingsdiv modern-settings-card">
-                <h3 class="content" onclick="window.open('mailto:ra25226@student.lisle202.org');">Support/Contact</h3>
-            </div>
+
+
         </div>
+
+        <div id="tasks" class="mainshadow">
+            <div class="fa-solid fa-list-check icon content"></div>
+            <form id="todoForm">
+                <input type="button" id="todoSubmit" class="todoButton" onclick="newTask()" value="+">
+                <input type="text" id="todoInput" placeholder="Something to do...">
+            </form>
+            <ul id="todoList"></ul>
+        </div>
+
+
+
+
+
     </div>
+
+
+
 </body>
+
 </html>
