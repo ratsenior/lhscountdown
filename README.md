@@ -4,7 +4,7 @@ LHS Countdown is a web project using HTML, Javascript, and CSS.
 
 
 ## Support
-Contact: ra25226@student.lisle202.org for support or to open an issue on GitHub.
+Contact: lc27158@student.lisle202.org for support or to open an issue on GitHub.
 
 
 ## Contributing
